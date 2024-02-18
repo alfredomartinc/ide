@@ -14,9 +14,8 @@ File: Layout CSS
 @import url("featured_slide.css");
 
 html{overflow-y:scroll;}
-body{margin:0; padding:0; font-size:13px; font-family:verdana, Arial, Helvetica, sans-serif; color:##64686d; background-color:#fff; line-height : 1.8em;;
+body{margin:0; padding:0; font-size:16px; font-family:verdana, Arial, Helvetica, sans-serif; color:##64686d; background-color:#fff; line-height : 1.8em;;
     }
-
 .justify{text-align:justify;}
 .bold{font-weight:bold;}
 .center{text-align:center;}
@@ -46,21 +45,60 @@ img{display:block; margin:0; padding:0; border:none;}
 .imgl{margin:0 8px 8px 0; clear:left;}
 .imgr{margin:0 0 8px 8px; clear:right;}
 
+
+/**** HEADER  ****/
+/*****************/
+.navbar.navbar-default {
+  border: 0;
+  border-radius: 0;
+  margin-bottom: 0;
+}
+.navbar.navbar-default .navbar-toggle {
+  margin-top: 32px;
+}
+.navbar.navbar-default .navbar-brand {
+  height: auto;
+  padding: 22px 15px 21px;
+  background:transparent;
+}
+
 /* ----------------------------------------------Wrapper------------------------------------- */
 /* --------------------
  *  main Wrapper
  * -------------------*/
 #main-wrapper {
     overflow : hidden;
-	width:1519px;
+	width: 1350px
     }
-	
+
 /* Regular Background */
-div.wrapper{display:block; position:relative; margin:50px 0px; text-align:left;}
-div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, div.wrapper h6{margin:0; padding:0; font-weight:normal; line-height:normal; font-family:verdana, Arial, Helvetica, sans-serif; color:rgb(150,15,15);}
-.col1{color:#CCCCCC; background-color:#fff; background:transparent;}
-.slider{color:rgb(20,20,20); background-color:rgb(230,230,230); position:relative; height:700px; text-align:center; width:1900px;}
-.slider a{color:rgb(20,20,20); background-color:rgb(230,230,230);}
+div.wrapper{display:block; 
+			position:relative; 
+			margin:50px 0px; 
+			text-align:left;}
+div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, div.wrapper h6{margin:0; 
+																								padding:0; 
+																								font-weight:normal; 
+																								line-height:normal; 
+																								font-family:verdana, Arial, Helvetica, sans-serif; 
+																								color:rgb(150,15,15);}
+.col1{color:#CCCCCC; 
+		background-color:#fff; 
+		background:transparent;}
+
+
+/* --------------------
+ *  Main Slider
+ * -------------------*/
+.slider{color:rgb(20,20,20); 
+		background-color:rgb(230,230,230); 
+		position:relative; 
+		height:700px; 
+		text-align:center;}
+.slider a{color:rgb(20,20,20);
+		background-color:rgb(230,230,230);}
+
+
 
 /* Noticias y Blog */
 .col2{color:#000000; background-color:#fff;}
@@ -69,11 +107,28 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 .title{color:rgb(150,15,15); background-color:#fff; padding-top:20px;}
 .fecha{font-size: 80%;}
 
+
 /* Incubadora */
-div.wrapper1{display:block; position:relative;  margin:150px auto; padding:100px 0px; overflow:hidden; font-size:13px; color:rgb(200,200,200); background-color:rgb(45,45,45);}
-div.wrapper1 h1, div.wrapper1 h2, div.wrapper1 h3, div.wrapper1 h4, div.wrapper1 h5, div.wrapper1 h6{margin:0; padding:0; font-weight:normal; line-height:normal; font-family:verdana, Arial, Helvetica, sans-serif; color:rgb(75,165,250);}
-.incubadora{color:rgb(230,230,230); background-color:rgb(45,45,45); margin-left:60px; margin-right:60px;}
-.incubadora a{color:rgb(75,165,250); background-color:rgb(45,45,45); margin:1000px 0px}
+div.wrapper1{display:block; 
+			position:relative;  
+			margin:150px auto; 
+			padding:100px 0px; 
+			overflow:hidden; 
+			color:rgb(200,200,200); 
+			background-color:rgb(45,45,45);}
+div.wrapper1 h1, div.wrapper1 h2, div.wrapper1 h3, div.wrapper1 h4, div.wrapper1 h5, div.wrapper1 h6{margin:0; 
+																									padding:0; 
+																									font-weight:normal; 
+																									line-height:normal; 
+																									font-family:verdana, Arial, Helvetica, sans-serif; 
+																									color:rgb(75,165,250);}
+.incubadora{color:rgb(230,230,230); 
+			background-color:rgb(45,45,45); 
+			margin-left:60px; 
+			margin-right:60px;}
+.incubadora a{color:rgb(75,165,250); 
+			background-color:rgb(45,45,45); 
+			margin:20% 0px}
 
 div.wrapper1a{display:block; position:relative; margin:0 auto; padding:20px 15px; overflow:hidden; font-size:12px; color:rgb(200,200,200); background-color:rgb(0,0,0);}
 div.wrapper1a h1, div.wrapper1a h2, div.wrapper1a h3, div.wrapper1a h4, div.wrapper1a h5, div.wrapper1a h6{margin:0; padding:0; font-weight:normal; line-height:normal; font-family:verdana, Arial, Helvetica, sans-serif; color:rgb(200,200,200);}
@@ -82,7 +137,7 @@ div.wrapper1a h1, div.wrapper1a h2, div.wrapper1a h3, div.wrapper1a h4, div.wrap
 
 /*Publicaciones */
 div.pd{box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-color:rgb(150,20,20);border-radius: 20px 20px 0px 0px;}
-.pd ul{margin:0; padding:0; list-style:none;}
+.pd ul{margin:0px; padding:0; list-style:none;}
 .pd li{display:block; float:left; width:310px; margin:0 30px 0 0; padding:0; border: 1px solid rgb(200,200,200); box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border-radius: 20px 20px 0px 0px;}
 .pd li.last{margin-right:0;}
 .pd h4{display:block; width:100%; height:65px; margin:0 10px; padding:15px 10px 10px 10px; font-weight:normal; line-height:normal; border-bottom:1px dotted #999999;}
@@ -598,12 +653,204 @@ div.bloque-header a, div.bloque-header h1, div.bloque2 h2, div.bloque-header h3,
   display: inline-block;
   margin: 0 7.5px;
 }
-@media only screen and (min-width: 768px) {
+
+
+
+/* ----------------------------------------------Mobile Version------------------------------------- */
+
+@media only screen and (max-width: 600px) {
   #footer1 .social-icons {
     float: right;
     color: #fff;
   }
 }
+
+@media only screen and (max-width: 600px) {
+#header, #topbar, #homepage, #breadcrumb, #container, #footer, #copyright{display:block; position:relative; width:80%; margin:0 auto;}
+
+/* Header */
+@media only screen and (max-width: 600px) {
+	#topnav{
+	  display: block;
+	  position: relative;
+	  top: 50px;
+	  left: 50px;
+	  
+	  z-index: 1;
+	  
+	  -webkit-user-select: none;
+	  user-select: none;
+	}
+	#topnav a
+	{
+	  text-decoration: none;
+	  color: #232323;
+	  
+	  transition: color 0.3s ease;
+	}
+
+	#topnav a:hover
+	{
+	  color: tomato;
+	}
+
+
+	#topnav input
+	{
+	  display: block;
+	  width: 40px;
+	  height: 32px;
+	  position: absolute;
+	  top: -7px;
+	  left: -5px;
+	  
+	  cursor: pointer;
+	  
+	  opacity: 0; /* hide this */
+	  z-index: 2; /* and place it over the hamburger */
+	  
+	  -webkit-touch-callout: none;
+	}
+
+	/*
+	 * Just a quick hamburger
+	 */
+	#topnav span
+	{
+	  display: block;
+	  width: 33px;
+	  height: 4px;
+	  margin-bottom: 5px;
+	  position: relative;
+	  
+	  background: #cdcdcd;
+	  border-radius: 3px;
+	  
+	  z-index: 1;
+	  
+	  transform-origin: 4px 0px;
+	  
+	  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+				  background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+				  opacity 0.55s ease;
+	}
+
+	#topnav span:first-child
+	{
+	  transform-origin: 0% 0%;
+	}
+
+	#topnav span:nth-last-child(2)
+	{
+	  transform-origin: 0% 100%;
+	}
+
+	/* 
+	 * Transform all the slices of hamburger
+	 * into a crossmark.
+	 */
+	#topnav input:checked ~ span
+	{
+	  opacity: 1;
+	  transform: rotate(45deg) translate(-2px, -1px);
+	  background: #232323;
+	}
+
+	/*
+	 * But let's hide the middle one.
+	 */
+	#topnav input:checked ~ span:nth-last-child(3)
+	{
+	  opacity: 0;
+	  transform: rotate(0deg) scale(0.2, 0.2);
+	}
+
+	/*
+	 * Ohyeah and the last one should go the other direction
+	 */
+	#topnav input:checked ~ span:nth-last-child(2)
+	{
+	  transform: rotate(-45deg) translate(0, -1px);
+	}
+
+	/*
+	 * Make this absolute positioned
+	 * at the top left of the screen
+	 */
+	#topnav
+	{
+	  position: absolute;
+	  width: 300px;
+	  margin: -100px 0 0 -50px;
+	  padding: 50px;
+	  padding-top: 125px;
+	  
+	  background: #ededed;
+	  list-style-type: none;
+	  -webkit-font-smoothing: antialiased;
+	  /* to stop flickering of text in safari */
+	  
+	  transform-origin: 0% 0%;
+	  transform: translate(-100%, 0);
+	  
+	  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+	}
+
+	#topnav li
+	{
+	  padding: 10px 0;
+	  font-size: 22px;
+	}
+
+	/*
+	 * And let's slide it in from the left
+	 */
+	#topnav input:checked ~ ul
+	{
+	  transform: none;
+	}
+}
+
+
+
+/* Slider */
+@media only screen and (max-width: 600px) {
+	.slider{
+		width:100%;
+		height:900px;
+		}		
+	#featured_slide{
+		width:450px;
+		height: 900px;
+		margin-top:100px;
+		}
+	#featured_content{
+		width:100%;
+		}
+	#featured_content, #featured_content ul{display:block; position:center; width:100%; height:700px; margin:0; padding:0; list-style:none; overflow:hidden;}
+	#featured_content img{display:block; width:90%; height:240px; margin:0 10px 0 10px; padding:4px; border:1px solid rgb(150,15,15);}
+	#featured_content li{display:block; position:relative; width:350px; height:760px; overflow:hidden;}
+	#featured_content .floater{display:block; width:80%; height:780px; margin:0 0 0 10%; padding:0px; overflow:hidden;}
+	#featured_content p{margin:0 0 20px 0; padding:0; line-height:1.6em; font-size:16px;}
+
+
+
+}
+
+
+/* quienes somos y últimas publicaciones */
+@media only screen and (max-width: 600px) {
+	div.pd{display:block; position:center; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-color:rgb(150,20,20);border-radius: 20px 20px 0px 0px;}
+	.pd ul{margin:auto;}
+	.pd li{display:block; float:center; width:310px; margin:0 50px 60px 50px; padding:0; border: 1px solid rgb(200,200,200); box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border-radius: 20px 20px 0px 0px;}
+	.pd li.last{margin-right:0;}
+	.pd h4{display:block; width:100%; height:65px; margin:0 10px; padding:15px 10px 10px 10px; font-weight:normal; line-height:normal; border-bottom:1px dotted #999999;}
+	.pd h2 img{float:left; margin:-15px 8px 0 0; padding:5px;}
+	.pd p{margin:5px 5px 25px 10px; padding:0 10px 1px 10px; line-height:1.6em;}
+	.pd p.readmore{display:block; text-align:right; line-height:normal; font-weight:normal;}
+	.pd p.readmore a{padding:8px 15px 10px; color:rgb(150,15,15); background-color:#fff;}
+}
+
 .form-control {
   box-shadow: none;
   -webkit-box-shadow: none;
