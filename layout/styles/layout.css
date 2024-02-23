@@ -86,6 +86,9 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 		background-color:#fff; 
 		background:transparent;}
 
+.section-header {
+  margin-bottom: 40px;
+}
 
 /* --------------------
  *  Main Slider
@@ -324,6 +327,54 @@ div.bloque-gris a{color:rgb(75,165,250); background-color:transparent;}
     }
 
 
+/* Iconos en qué hacemos */
+#features .media.service-box:first-child {
+  margin-top: 80px;
+}
+#services {
+  padding: 100px 0 75px;
+}
+.media.service-box {
+  margin: 15px 0;
+  content: 200px;
+}
+.media.service-box .pull-left {
+  margin-right: 20px;
+}
+.media.service-box .pull-left > i {
+  font-size: 24px;
+  height: 64px;
+  line-height: 64px;
+  text-align: center;
+  width: 64px;
+  border-radius: 100%;
+  color: #45aed6;
+  box-shadow: inset 0 0 0 1px #d7d7d7;
+  -webkit-box-shadow: inset 0 0 0 1px #d7d7d7;
+  transition: background-color 400ms, background-color 400ms;
+  position: relative;
+}
+.media.service-box .pull-left > i:after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  margin-top: -10px;
+  right: -10px;
+  border: 4px solid #fff;
+  border-radius: 20px;
+  background: #45aed6;
+}
+.media.service-box:hover .pull-left > i {
+  background-image: -moz-linear-gradient(90deg, #2caab3 0%, #2c8cb3 100%);
+  background-image: -webkit-linear-gradient(90deg, #2caab3 0%, #2c8cb3 100%);
+  background-image: -ms-linear-gradient(90deg, #2caab3 0%, #2c8cb3 100%);
+  color: #fff;
+  box-shadow: inset 0 0 0 15px rgba(255, 255, 255, 0.8);
+  -webkit-box-shadow: inset 0 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
  
 /* Animation numbers */
 #animated-number {
@@ -353,6 +404,55 @@ div.bloque-gris a{color:rgb(75,165,250); background-color:transparent;}
   margin-bottom: 20px;
 }
 
+/* Equipo */
+#meet-team .team-member {
+  padding: 13px;
+  background: #eeeeee;
+  border: 2px solid #eeeeee;
+  transition: border-color 400ms;
+  -webkit-transition: border-color 400ms;
+  margin-bottom: 40px;
+}
+#meet-team .team-member .team-img {
+  margin: -15px -15px 0 -15px;
+  justify-content: center;
+}
+#meet-team .team-member a{
+  background:rgb(235,235,235);
+}
+
+#meet-team .team-member .team-info {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #dbdbdb;
+  margin-bottom: 10px;
+}
+#meet-team .team-member:hover {
+  border-color: #45aed6;
+}
+#meet-team .team-member:hover .social-icons > li > a {
+  background: #45aed6;
+}
+ #meet-team .social-icons {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+#meet-team .social-icons > li {
+  display: inline-block;
+}
+#meet-team .social-icons > li > a {
+  display: block;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  color: #fff;
+  background: #222534;
+  border-radius: 3px;
+}
+ 
+ 
+ 
 .panel-default {
   border-color: #eee;
   width: 531px;
@@ -374,9 +474,9 @@ div.sidebox1{
 background:rgb(240,240,350);
 margin-left:78px;
 margin-right:65px;
-margin-bottom:20px; 
+margin-bottom:40px; 
 padding-top:20px;
-height:280px;
+padding-bottom: 40px;
 border-color:rgb(150,20,20);
 }
 div.sidebox1 a{background-color:rgb(240,240,350); color:rgb(120,100,210);}
