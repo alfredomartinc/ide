@@ -24,7 +24,8 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png"/>
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png"/>
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png"/>
-	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	<link rel="stylesheet" href="layout/styles/layout.css" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=0.8">
@@ -33,6 +34,27 @@
   <body id="page-top" data-spy="scroll" data-target=".navbar">
 
 <!-- Header OK -->
+
+<!-- Burger menu for media -->
+<div class="topnav">
+   <a class="navbar-brand" href="index.html"><img src="images/idelogomedia.png" alt="logo"></a>
+  <!-- Navigation links (hidden by default) -->
+  <div id="myLinks">
+	  <a href="index.html">Home</a>
+      <a href="mision.html">Misión y Visión</a>
+      <a href="equipo.html">Equipo</a>
+      <a href="quehacemos.html">Qué Hacemos</a>
+	  <a href="proyectos.html">Proyectos</a>
+    <a href="#about">About</a>
+  </div>
+  <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars fa-2x"></i>
+  </a>
+</div>
+
+
+
       <header id="header">
         <nav id="main-menu" class="navbar navbar-default navbar-fixed-top" role="banner">
             <div class="container">
@@ -431,5 +453,17 @@
 	<script type="text/javascript" src="layout/scripts/jquery.min.js"></script>
 	<script type="text/javascript" src="layout/scripts/jquery.jcarousel.pack.js"></script>
 	<script type="text/javascript" src="layout/scripts/jquery.jcarousel.setup.js"></script>		
+	
+	<script>
+function myFunction() {
+  var x = document.getElementById("myLinks");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
+</script>
+
 </body>
 </html>
