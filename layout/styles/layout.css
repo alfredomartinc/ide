@@ -59,7 +59,7 @@ img{display:block; margin:0; padding:0; border:none;}
 .navbar.navbar-default .navbar-brand {
   height: auto;
   padding: 22px 15px 21px;
-  background:transparent;
+  background:white;
 }
 
 /* ----------------------------------------------Wrapper------------------------------------- */
@@ -662,17 +662,19 @@ div.img-left{float:right; margin-left:10px; }
 
 /* ----------------------------------------------Header------------------------------------- */
 
-#header{padding:20px 0; z-index:1000;}
+#header{padding:0px 0; z-index:1000;}
 #header #logo{display:block; float:left; width:300px; overflow:hidden;}
 #header #logo h1, #header #logo p{margin:0; padding:0; line-height:normal;}
 #header #logo h1{font-size:36px; text-transform:uppercase;}
 #header h1 a{color:##64686d; background-color:#fff;}
 
 
-div.bloque-header{display:block; position:relative; width:900px; height:180px; margin:20px 0px 60px; padding:20px 50px; overflow:hidden; font-size:12px; color:rgb(20,20,20); background-color:rgb(245,245,245);}
+div.bloque-header{display:block; position:relative; width:900px; height:180px; margin:20px 0px 60px; padding:20px 50px; overflow:hidden; font-size:14px; color:rgb(20,20,20); background-color:rgb(245,245,245);}
 div.bloque-header a, div.bloque-header h1, div.bloque2 h2, div.bloque-header h3, div.bloque-header h4, div.bloque-header h5, div.bloque-header h6{margin:0; padding:0; line-height:normal; font-weight:normal; background-color:rgb(245,245,245); font-family:verdana, Arial, Helvetica, sans-serif; color:rgb(150,20,20);}
 
-
+	.topnav {
+	  display:none;
+	}
 
 /* ----------------------------------------------BreadCrumb------------------------------------- */
 
@@ -765,58 +767,66 @@ div.bloque-header a, div.bloque-header h1, div.bloque2 h2, div.bloque-header h3,
   }
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1050px) {
 #header, #topbar, #homepage, #breadcrumb, #container, #footer, #copyright{display:block; position:relative; width:80%; margin:0 auto;}
 
 /* Header */
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1050px) {
 	#header{ 
 		display:none;	
 		}
 }
 
+
+
+@media only screen and (max-width: 1050px) {
 /* Header for phones */
-.topnav {
-  overflow: hidden;
-  background-color: white;
-  position: relative;
-}
+	.topnav {
+	  display:block;
+	  overflow: hidden;
+	  background-color: white;
+	  position: relative;
+	}
 
-.topnav #myLinks {
-  display: none;
-  float:right;
-  padding-right:25px;
-  padding-top:40px;
-}
+	.topnav #myLinks {
+	  display: none;
+	  float:right;
+	  padding-right:25px;
+	  padding-top:40px;
+	}
 
-.topnav a {
-  color: grey;
-  padding: 14px 16px 0px 16px;
-  text-decoration: none;
-  font-size: 14px;
-  display: block;
-}
+	.topnav a {
+	  color: grey;
+	  padding: 14px 16px 0px 16px;
+	  text-decoration: none;
+	  font-size: 14px;
+	  display: block;
+	}
 
-.topnav a.icon {
-  background: white;
-  display: block;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
+	.topnav a.icon {
+	  background: white;
+	  display: block;
+	  position: absolute;
+	  right: 0;
+	  top: 0;
+	}
 
-.topnav a:hover {
-  background-color: white;
-  color:rgb(150,15,15);
-}
+	.topnav a:hover {
+	  background-color: white;
+	  color:rgb(150,15,15);
+	}
 
-.active {
-  background-color: white;
-  color: white;
-}
+	.active {
+	  background-color: white;
+	  color: white;
+	}
+	  
   
-  
 }
+
+
+  
+
 
 /* Style the active link (or home/logo) */
 .active {
@@ -853,7 +863,7 @@ div.bloque-header a, div.bloque-header h1, div.bloque2 h2, div.bloque-header h3,
 
 
 /* quienes somos y últimas publicaciones */
-@media only screen and (min-width: 601px) and (max-width: 1000px) {
+@media only screen and (min-width: 601px) and (max-width: 1050px) {
 	div.pd{display:block; position:center; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-color:rgb(150,20,20);border-radius: 20px 20px 0px 0px;}
 	.pd ul{margin:auto;}
 	.pd li{display:block; float:center; width:310px; margin:0 20% 60px 30%; padding:0; border: 1px solid rgb(200,200,200); box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border-radius: 20px 20px 0px 0px;}
@@ -870,10 +880,45 @@ div.bloque-header a, div.bloque-header h1, div.bloque2 h2, div.bloque-header h3,
 }
 
 
+
+
+
+@media only screen and (max-width: 1050px) {
+	div.bloque-header{
+		width: 100%;
+		margin-bottom:90px;
+		padding:5px;
+		height: 100%;
+		/*border: solid 1px;*/
+	}	
+	div.bloque-header img{
+		display:none;
+	}
+}
+
+@media only screen and (max-width: 1050px) {
+	div.bloque-libre{
+		width:90%;  
+		}
+	div.bordert{
+		margin-left:15px;
+		position:center; 
+		width:90%;
+		}
+	
+}
+
+
+
 .form-control {
   box-shadow: none;
   -webkit-box-shadow: none;
 }
+
+
+
+
+
 
 
 /* Style inputs with type="text", select elements and textareas */
