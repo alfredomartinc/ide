@@ -59,7 +59,7 @@ img{display:block; margin:0; padding:0; border:none;}
 .navbar.navbar-default .navbar-brand {
   height: auto;
   padding: 22px 15px 21px;
-  background:white;
+  background:transparent;
 }
 
 /* ----------------------------------------------Wrapper------------------------------------- */
