@@ -32,6 +32,26 @@
   </head>
   <body>
 <!-- Header OK -->
+
+<!-- Burger menu for media -->
+<div class="topnav">
+   <a class="navbar-brand" href="index.html"><img src="images/idelogomedia.png" alt="logo"></a>
+  <!-- Navigation links (hidden by default) -->
+  <div id="myLinks">
+	  <a href="index.html">Home</a>
+      <a href="mision.html">Misión y Visión</a>
+      <a href="equipo.html">Equipo</a>
+      <a href="quehacemos.html">Qué Hacemos</a>
+	  <a href="proyectos.html">Proyectos</a>
+    <a href="#about">About</a>
+  </div>
+  <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars fa-2x"></i>
+  </a>
+</div>
+
+
       <header id="header">
         <nav id="main-menu" class="navbar navbar-default navbar-fixed-top" role="banner">
             <div class="container">
@@ -54,12 +74,12 @@
           					</ul>
 						 </li>
         				 <li><a href="quehacemos.html">Qué Hacemos</a>
-						     <ul>
+						    <!-- <ul>
             		 	 	 <li><a href="qhedp.html">Evaluación de Programas</a></li>
             				 <li><a href="incubadora.html">Incubadora Social</a></li>
             				 <li><a href="qhie.html">Investigación y Estudios</a></li>
 							 <li><a href="capacitaciones.html">Capacitaciones</a></li>
-          					</ul>
+          					</ul> -->
 						 </li>
         				 <li><a href="Publicaciones.html">Publicaciones</a>
         				 </li>
@@ -81,9 +101,10 @@
 				<div class="col-md-1 col-sm-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">
 				<img class="center" src="images/llavei.png" alt="" />
 				</div>
-				<div class="col-md-10 col-sm-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">
+				<div class="col-md-10 wow fadeInUp" data-wow-delay="100ms"  data-wow-delay="0ms">
 				<p></p>
-                <p class=" center wow fadeInDown" style="font-size: 14px">  Motivados por la <a>innovacion social</a> y <a>participacion ciudadana</a>, 
+                <p class=" center wow fadeInDown" data-wow-duration="900ms" data-wow-duration="300ms" style="font-size: 14px">  
+				Motivados por la <a>innovacion social</a> y <a>participacion ciudadana</a>, 
 				trabajamos por una ciudadanía empoderada, con herramientas para 
 				ejecutar programas sociales eficientes y bien diseñados, basados en evidencia empírica y 
 				el análisis de grandes datos, que tengan el potencial de mejorar la vida de las personas. </p>
@@ -93,23 +114,25 @@
 				</div>
 			  </div>
 			</div>
+			
+			
             <div class="row">
-                    <div class="col-md-6 col-sm-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">
+                <div class="col-md-6 col-sm-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">
 					<h4 class="column-title" style="font-size: 26px"> Misión </h4>
 					<p></p>
 					<p style="font-size: 16px"> Nuestro objetivo es mejorar la calidad de vida de las personas, por medio del apoyo técnico a instituciones 
 					que promuevan derechos fundamentales; el desarrollo de proyectos con alto impacto social;
 					e influyendo en la promulgación de leyes y políticas públicas.</p>
-                    </div><!--/.col-md-4-->	
-					<div class="col-md-6 col-sm-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">
+                </div><!--/.col-md-4-->	
+				<div class="col-md-6 col-sm-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">
 					<p></p>
-					<img class="center" src="images/mision.png" alt="" />
-					</div><!--/.col-md-4-->	
+					<img class="img-responsive" src="" alt="" />
+				</div><!--/.col-md-4-->	
 			</div> <!--/ row -->
 			<div class="row">	
 					<div class="col-md-6 col-sm-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="100ms">
 					<p></p>
-					Fotos
+					
                     </div><!--/.col-md-4-->
 					<div class="col-md-6 col-sm-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="100ms">
                     <h4 class="column-title" style="font-size: 26px"> Visión </h4>
@@ -160,11 +183,12 @@
 			  <i class="fa fa-users celeste"></i>
 			  </div>
 			  <p class="bold celeste" style="font-size: 16px"> Cooperación</p>
-			  <p style="font-size: 14px"> Pequeña descripción de principio 4 sobre importancia y de qué se trata </p>
+			  <p style="font-size: 14px"> El trabajo mancomunado de organizaciones civiles y gubernamentales crea sinergias que generan mejores políticas públicas </p>
 			</div> <!--/ column -->					
 		</div> <!--/ bloque-libre -->
 	 </div> <!--/ Container -->
-			
+	
+	
 	
 <!-- Contacto -->	
 <div class="wrapper2 contacto">
@@ -172,7 +196,7 @@
     <div="row">
 		<div class="col-md-4 col-sm-6">
              	  <h4 class="section-title fadeInDown">La ONG</h4>	  	   		
-			 <p>Somos una consultora sin fines de lucro que ayuda a otras organizaciones a potenciar sus proyectos sociales. Guiados por nuestra convicción 
+			 <p>Somos una consultora sin fines de lucro, guiados por nuestra convicción 
 				de que la innovación social y la evidencia empírica deben guiar conjuntamente 
 				el diseño de políticas públicas para asegurar el pleno goce de 
 				derechos fundamentales</p>
@@ -182,12 +206,18 @@
 		</div>
 		<div class="col-md-4 col-sm-6" data-wow-duration="300ms" data-wow-delay="0ms">
              	  <h4 class="section-title fadeInDown">Contáctanos</h4>	
-			 		<a href="#"><i class="fa fa-facebook"></i></a>
-					<p> facebook</p>
+                    <ul class="social-icons">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+						<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+						<li><a href="#"><i class="fa fa-envelope"></i></a></li>
+                    </ul>
 		</div>
     </div>
   </div>
 </div>
+
 
 		
      <footer id="footer1">
@@ -207,6 +237,16 @@
         </div>
     </footer><!--/#footer-->
 
+<script>
+function myFunction() {
+  var x = document.getElementById("myLinks");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
+</script>
 
 	<script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
