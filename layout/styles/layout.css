@@ -563,19 +563,19 @@ div.sidebox-cap a{background-color:rgb(240,240,350); color:rgb(120,100,210);}
 
 
 div.sidebox-pub{
-background:rgb(240,240,350);
-margin-left:0px;
+background:rgb(240,240,240);
+margin-left:-10px;
 margin-right:0px;
 margin-bottom:10px; 
 padding-top:10px;
 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 height:180px;
-border-radius: 15px;
+border-radius: 5px;
 border-color:rgb(150,20,20);
 }
-div.sidebox-pub a{background-color:rgb(240,240,350); color:rgb(120,100,210);}
+div.sidebox-pub a{background-color:rgb(240,240,240); color:rgb(120,100,210);}
 div.sidebox-pub img{padding-right:-50px; padding-top:-10px; float:left;}
-div.sidebox-pub p{padding:0px 15px 0;}
+div.sidebox-pub p{padding:0px 20px 0; line-height:1.7;}
 
 div.longbox-pub{
 background:rgb(249,249,249);
@@ -676,6 +676,7 @@ div.bloque-header a, div.bloque-header h1, div.bloque2 h2, div.bloque-header h3,
 	.topnav {
 	  display:none;
 	}
+
 
 /* ----------------------------------------------BreadCrumb------------------------------------- */
 
