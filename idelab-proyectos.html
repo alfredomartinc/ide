@@ -246,16 +246,29 @@
 
 <header>
   <nav class="wrap">
-	<a href="index.html" class="brand"><img src="images/logo_ide_transp.png" alt="logo" class="logo"></a>    <div class="navlinks">
+    <a href="idelab-rediseno.html" class="brand"><img src="images/logo_ide.png" alt="IDE — Innovación, Desarrollo y Equidad" class="logo"></a>
+    <div class="navlinks">
       <a href="idelab-mision.html">Misión y Visión</a>
       <a href="idelab-equipo.html">Equipo</a>
       <a href="idelab-quehacemos.html">Qué hacemos</a>
-      <a href="idelab-proyectos.html">Proyectos</a>
+      <a href="idelab-proyectos.html" class="active">Proyectos</a>
       <a href="idelab-publicaciones.html">Publicaciones</a>
-      <a href="#contacto">Contacto</a>
+      <a href="idelab-contacto.html">Contacto</a>
     </div>
-    <a href="#contacto" class="navcta">Trabajemos juntos</a>
+    <a href="idelab-contacto.html" class="navcta desktop-cta">Trabajemos juntos</a>
+    <button class="burger" id="burgerBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="idelab-mision.html">Misión y Visión</a>
+      <a href="idelab-equipo.html">Equipo</a>
+      <a href="idelab-quehacemos.html">Qué hacemos</a>
+      <a href="idelab-proyectos.html" class="active">Proyectos</a>
+      <a href="idelab-publicaciones.html">Publicaciones</a>
+      <a href="idelab-contacto.html">Contacto</a>
+    <a href="idelab-contacto.html" class="navcta">Trabajemos juntos</a>
+  </div>
 </header>
 
 <section class="page-hero" style="--accent:#b85a4a; --hero-bg:#f3e0dc">
@@ -275,7 +288,11 @@
 <section class="radal">
   <div class="wrap radal-top">
     <div class="radal-visual">
-      <img src="images/Radal_largo.png">
+      <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice">
+        <path d="M0 380 Q100 320 200 360 T400 340 V500 H0 Z" fill="rgba(245,240,228,0.18)"/>
+        <path d="M0 420 Q100 380 200 410 T400 400 V500 H0 Z" fill="rgba(245,240,228,0.28)"/>
+        <circle cx="310" cy="110" r="46" fill="rgba(245,240,228,0.25)"/>
+      </svg>
       <span class="radal-badge">Proyecto insignia · Incubadora</span>
     </div>
 
@@ -309,7 +326,7 @@
 
       <div class="cta-row">
         <a class="btn btn-solid" href="https://idelab.org/blog/Radalpres.pdf">Conoce el proyecto</a>
-        <a class="btn btn-ghost" href="idelab-rediseno.html#contacto">Conéctate con nosotros</a>
+        <a class="btn btn-ghost" href="idelab-contacto.html">Conéctate con nosotros</a>
         <a class="btn btn-clay" href="#">Aporta al crowdfunding</a>
       </div>
     </div>
@@ -363,5 +380,23 @@
   </div>
 </footer>
 
+
+<script>
+(function(){
+  var btn = document.getElementById('burgerBtn');
+  var menu = document.getElementById('mobileMenu');
+  if(!btn || !menu) return;
+  btn.addEventListener('click', function(){
+    var isOpen = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      menu.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+  });
+})();
+</script>
 </body>
 </html>

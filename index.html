@@ -331,7 +331,8 @@
 
 <header>
   <nav class="wrap">
-	<a href="#" class="brand"><img src="images/logo_ide_transp.png" alt="logo" class="logo"></a>    <div class="navlinks">
+    <a href="idelab-rediseno.html" class="brand"><img src="images/logo_ide.png" alt="IDE — Innovación, Desarrollo y Equidad" class="logo"></a>
+    <div class="navlinks">
       <a href="idelab-mision.html">Misión y Visión</a>
       <a href="idelab-equipo.html">Equipo</a>
       <a href="idelab-quehacemos.html">Qué hacemos</a>
@@ -339,8 +340,20 @@
       <a href="idelab-publicaciones.html">Publicaciones</a>
       <a href="idelab-contacto.html">Contacto</a>
     </div>
-    <a href="#contacto" class="navcta">Trabajemos juntos</a>
+    <a href="idelab-contacto.html" class="navcta desktop-cta">Trabajemos juntos</a>
+    <button class="burger" id="burgerBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="idelab-mision.html">Misión y Visión</a>
+      <a href="idelab-equipo.html">Equipo</a>
+      <a href="idelab-quehacemos.html">Qué hacemos</a>
+      <a href="idelab-proyectos.html">Proyectos</a>
+      <a href="idelab-publicaciones.html">Publicaciones</a>
+      <a href="idelab-contacto.html">Contacto</a>
+    <a href="idelab-contacto.html" class="navcta">Trabajemos juntos</a>
+  </div>
 </header>
 
 <section class="hero" style="--accent:#c1543a; --hero-bg:#f3e3dc">
@@ -348,17 +361,18 @@
     <div class="masthead">
       <span class="dot"></span>
       <span></span>
+      <span>·</span>
       <span>Fundada en 2012</span>
       <span>·</span>
       <span>Consultora sin fines de lucro</span>
     </div>
     <div class="hero-grid">
       <div>
-        <span class="eyebrow">Innovación · Desarrollo · Equidad</span>
+        <span class="eyebrow">Innovación · Desarrollo · Evidencia</span>
         <h1>De la innovación social al <mark>desarrollo sostenible.</mark></h1>
         <p class="lead">Asesoramos a organizaciones sociales y agencias públicas en el diseño, monitoreo y evaluación de programas, y transformamos ideas en proyectos de innovación social con impacto medible.</p>
         <div class="hero-actions">
-          <a class="btn btn-solid" href="teoria-cambio.html">Conoce nuestra Teoría del Cambio</a>
+          <a class="btn btn-solid" href="idelab-proyectos.html">Conoce Radal, nuestro proyecto insignia</a>
           <a class="btn btn-ghost" href="#quienes">Qué hacemos</a>
         </div>
       </div>
@@ -518,7 +532,11 @@
 <section class="incubator" id="incubadora">
   <div class="wrap inc-grid">
     <div class="inc-visual">
-      <img src="images/Radal_largo.png">
+      <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice">
+        <path d="M0 380 Q100 320 200 360 T400 340 V500 H0 Z" fill="rgba(245,240,228,0.18)"/>
+        <path d="M0 420 Q100 380 200 410 T400 400 V500 H0 Z" fill="rgba(245,240,228,0.28)"/>
+        <circle cx="310" cy="110" r="46" fill="rgba(245,240,228,0.25)"/>
+      </svg>
       <span class="inc-badge">Desde nuestra incubadora</span>
     </div>
     <div class="inc-text">
@@ -617,5 +635,23 @@
   </div>
 </footer>
 
+
+<script>
+(function(){
+  var btn = document.getElementById('burgerBtn');
+  var menu = document.getElementById('mobileMenu');
+  if(!btn || !menu) return;
+  btn.addEventListener('click', function(){
+    var isOpen = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      menu.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+  });
+})();
+</script>
 </body>
 </html>

@@ -159,16 +159,29 @@
 
 <header>
   <nav class="wrap">
-	<a href="index.html" class="brand"><img src="images/logo_ide_transp.png" alt="logo" class="logo"></a>    <div class="navlinks">
+    <a href="idelab-rediseno.html" class="brand"><img src="images/logo_ide.png" alt="IDE — Innovación, Desarrollo y Equidad" class="logo"></a>
+    <div class="navlinks">
       <a href="idelab-mision.html">Misión y Visión</a>
       <a href="idelab-equipo.html">Equipo</a>
       <a href="idelab-quehacemos.html">Qué hacemos</a>
       <a href="idelab-proyectos.html">Proyectos</a>
       <a href="idelab-publicaciones.html">Publicaciones</a>
-      <a href="#contacto">Contacto</a>
+      <a href="idelab-contacto.html" class="active">Contacto</a>
     </div>
-    <a href="#contacto" class="navcta">Trabajemos juntos</a>
+    <a href="idelab-contacto.html" class="navcta desktop-cta">Trabajemos juntos</a>
+    <button class="burger" id="burgerBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="idelab-mision.html">Misión y Visión</a>
+      <a href="idelab-equipo.html">Equipo</a>
+      <a href="idelab-quehacemos.html">Qué hacemos</a>
+      <a href="idelab-proyectos.html">Proyectos</a>
+      <a href="idelab-publicaciones.html">Publicaciones</a>
+      <a href="idelab-contacto.html" class="active">Contacto</a>
+    <a href="idelab-contacto.html" class="navcta">Trabajemos juntos</a>
+  </div>
 </header>
 
 <section class="page-hero" style="--accent:#a1442e; --hero-bg:#f4e1d7">
@@ -287,5 +300,23 @@
   </div>
 </footer>
 
+
+<script>
+(function(){
+  var btn = document.getElementById('burgerBtn');
+  var menu = document.getElementById('mobileMenu');
+  if(!btn || !menu) return;
+  btn.addEventListener('click', function(){
+    var isOpen = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      menu.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+  });
+})();
+</script>
 </body>
 </html>

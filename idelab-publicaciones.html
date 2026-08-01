@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -152,7 +153,7 @@
 
 <header>
   <nav class="wrap">
-    <a href="index.html" class="brand"><img src="images/logo_ide_transp.png" alt="IDE — Innovación, Desarrollo y Equidad" class="logo"></a>
+    <a href="idelab-rediseno.html" class="brand"><img src="images/logo_ide_transp.png" alt="IDE — Innovación, Desarrollo y Equidad" class="logo"></a>
     <div class="navlinks">
       <a href="idelab-mision.html">Misión y Visión</a>
       <a href="idelab-equipo.html">Equipo</a>
@@ -161,8 +162,20 @@
       <a href="idelab-publicaciones.html" class="active">Publicaciones</a>
       <a href="idelab-contacto.html">Contacto</a>
     </div>
-    <a href="idelab-contacto.html" class="navcta">Trabajemos juntos</a>
+    <a href="idelab-contacto.html" class="navcta desktop-cta">Trabajemos juntos</a>
+    <button class="burger" id="burgerBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="idelab-mision.html">Misión y Visión</a>
+      <a href="idelab-equipo.html">Equipo</a>
+      <a href="idelab-quehacemos.html">Qué hacemos</a>
+      <a href="idelab-proyectos.html">Proyectos</a>
+      <a href="idelab-publicaciones.html" class="active">Publicaciones</a>
+      <a href="idelab-contacto.html">Contacto</a>
+    <a href="idelab-contacto.html" class="navcta">Trabajemos juntos</a>
+  </div>
 </header>
 
 <section class="page-hero" style="--accent:#8a3d1c; --hero-bg:#f0ddd0">
@@ -187,11 +200,11 @@
       <div class="filter-select-wrap">
         <select class="filter-select" id="pubFilter" aria-label="Filtrar publicaciones por tema">
           <option value="all">Todos los temas</option>
-          <option value="Educación">Educación</option>
-          <option value="Pobreza y Desiguadad">Pobreza y Desigualdad</option>
-          <option value="Sociedad Civil">Sociedad Civil</option>
-          <option value="Medioambiente">Medioambiente</option>
-		  <option value="Empleo">Empleo y Género</option>
+          <option value="Derechos humanos">Derechos humanos</option>
+          <option value="Ética">Ética</option>
+          <option value="Evaluación">Evaluación</option>
+          <option value="Océanos">Océanos</option>
+          <option value="Energía">Energía</option>
         </select>
       </div>
     </div>
@@ -202,92 +215,74 @@
     </div>
 
     <div class="pub-list" id="pubList">
-	  <div class="pub-row" data-topic="Empleo">
-        <span class="pub-tag">Empleo y Género</span>
-        <div>
-          <h3>The Impact of Extending Paid Maternity and Paternity Leave on Female Employment: A Comparative Policy Analysis in Sub-Saharan Africa</h3>
-		  <h6>Publicación académica</h6>
-          <p>Las mujeres en países que ampliaron tanto la licencia de maternidad como la de paternidad tuvieron un 5% más de probabilidades de estar empleadas en un 
-		    trabajo remunerado por cada semana adicional de licencia de maternidad. En contraste, en los países que solo ampliaron la licencia de maternidad, 
-			los efectos fueron heterogéneos.</p>
-        </div>
-        <a class="story-link" href="https://www.sciencedirect.com/science/article/pii/S0738059325000161">Leer +</a>
-      </div>
 
-      <div class="pub-row" data-topic="Educación">
-        <span class="pub-tag">Educación</span>
-        <div>
-          <h3>The combined effect of free and compulsory lower secondary education on educational attainment in Sub-Saharan Africa</h3>
-		  <h6>Publicación académica</h6>
-          <p>Los países que introdujeron educación secundaria gratuita y obligatoria registraron mejoras sustanciales en los resultados académicos, mientras que 
-		  aquellos que solo eliminaron las matrículas mostraron mejoras moderadas o nulas. Los efectos de la educación obligatoria fueron mayores entre los estudiantes 
-		  de familias de bajos ingresos.</p>
-        </div>
-        <a class="story-link" href="https://www.sciencedirect.com/science/article/pii/S0738059325000161">Leer +</a>
-      </div>
-	  
-	  <div class="pub-row" data-topic="Medioambiente">
-        <span class="pub-tag">Medioambiente</span>
+      <div class="pub-row" data-topic="Energía">
+        <span class="pub-tag">Energía</span>
         <div>
           <h3>Descarbonización e innovación energética</h3>
-		  <h6>Columna de opinión</h6>
-          <p>La meta nacional de alcanzar la carbono neutralidad y un sistema eléctrico 100% libre de emisiones al año 2050 plantea inquietudes 
-		  entre los expertos, que ven con preocupación el largo plazo para lograr una matriz de cero impacto frente a los compromisos internacionales suscritos por el país.</p>
+          <p>La meta nacional de alcanzar la carbono neutralidad y un sistema eléctrico 100% libre de emisiones al año 2050 plantea inquietudes entre los expertos, que ven con preocupación el largo plazo para lograr una matriz de cero impacto frente a los compromisos internacionales suscritos por el país.</p>
         </div>
         <a class="story-link" href="https://idelab.org/blog/IDE%20-%20Descarbonizaci%C3%B3n%20e%20innovaci%C3%B3n.pdf">Leer +</a>
       </div>
 
-      <div class="pub-row" data-topic="Educación">
-        <span class="pub-tag">Educación</span>
+      <div class="pub-row" data-topic="Derechos humanos">
+        <span class="pub-tag">Derechos humanos</span>
         <div>
-          <h3>The intergenerational effect of tuition-free lower-secondary education on children's nutritional outcomes in Africa</h3>
-		  <h6> Publicación académica </h6>
-          <p>La introducción de la educación secundaria gratuita en países africanos mejoró significativamente la salud infantil entre los 
-		  hijos de mujeres expuestas a esta política. Los autores estiman este efecto mediante un enfoque de diferencias en diferencias.</p>
+          <h3>Education and fertility</h3>
+          <p>La meta nacional de alcanzar la carbono neutralidad y un sistema eléctrico 100% libre de emisiones al año 2050 plantea inquietudes entre los expertos, que ven con preocupación el largo plazo para lograr una matriz de cero impacto frente a los compromisos internacionales suscritos por el país.</p>
         </div>
-        <a class="story-link" href="https://pubmed.ncbi.nlm.nih.gov/38118117/">Leer +</a>
+        <a class="story-link" href="#">Leer +</a>
       </div>
 
-      <div class="pub-row" data-topic="Educación">
-        <span class="pub-tag">Educación</span>
-        <div>
-          <h3>Does free tuition help or hinder the poor? </h3>
-		  <h6> Publicación académica </h6>
-          <p> La investigación analiza cómo la introducción de la gratuidad universitaria en Chile modificó las decisiones de acceso a la 
-		  educación superior. Los mayores efectos se observaron entre estudiantes de bajos ingresos y alto rendimiento académico, quienes 
-		  aumentaron su probabilidad de matricularse en programas universitarios en lugar de carreras técnicas.</p>
-        </div>
-        <a class="story-link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4780393">Leer +</a>
-      </div>
-
-
-
-
-      <div class="pub-row" data-topic="Medioambiente">
-        <span class="pub-tag">Medioambiente</span>
+      <div class="pub-row" data-topic="Ética">
+        <span class="pub-tag">Ética</span>
         <div>
           <h3>Combatir la contaminación desde una perspectiva ética e inclusiva</h3>
-		  <h6>Columna de opinión</h6>
           <p>In this paper, we study the intergenerational effect of providing free tuition in secondary school on future children's nutrition. We combined a novel longitudinal dataset that captures educational policies for 40 African countries from 1990 to 2019 with the Demographic and Health Survey (DHS).</p>
         </div>
         <a class="story-link" href="https://pubmed.ncbi.nlm.nih.gov/38118117/">Leer +</a>
       </div>
 
-      <div class="pub-row" data-topic="Sociedad Civil">
-        <span class="pub-tag">Sociedad Civil</span>
+      <div class="pub-row" data-topic="Ética">
+        <span class="pub-tag">Ética</span>
         <div>
-          <h3>¿Por qué evaluar?</h3>
-		  <h6>Columna de opinión</h6>
+          <h3>Combatir la contaminación desde una perspectiva ética e inclusiva</h3>
+          <p>La contaminación atmosférica ha alcanzado peaks históricos en la última década, los cuales es necesario detener para cumplir con los compromisos internacionales del país y la Agenda 2030. Nuevas tecnologías en armonía con una ética responsable e inclusiva podrían representar un gran avance.</p>
+        </div>
+        <a class="story-link" href="https://idelab.org/blog/IDE%20-%20Combatir%20contaminacion%20desde%20una%20etica%20rsponsable%20e%20inclusiva.pdf">Leer +</a>
+      </div>
+
+      <div class="pub-row" data-topic="Evaluación">
+        <span class="pub-tag">Evaluación</span>
+        <div>
+          <h3>Otro título</h3>
           <p>Creciendo de forma acelerada en los últimos años, la tendencia de exigir a las organizaciones sociales elevados estándares de accountability presenta nuevos desafíos y vastas oportunidades para organizaciones sin fines de lucro.</p>
         </div>
         <a class="story-link" href="https://idelab.org/blog/IDE%20-%20Por%20qu%C3%A9%20evaluar.pdf">Leer +</a>
       </div>
 
-      <div class="pub-row" data-topic="Medioambiente">
-        <span class="pub-tag">Medioambiente</span>
+      <div class="pub-row" data-topic="Evaluación">
+        <span class="pub-tag">Evaluación</span>
+        <div>
+          <h3>¿Por qué evaluar?</h3>
+          <p>Creciendo de forma acelerada en los últimos años, la tendencia de exigir a las organizaciones sociales elevados estándares de accountability presenta nuevos desafíos y vastas oportunidades para organizaciones sin fines de lucro.</p>
+        </div>
+        <a class="story-link" href="https://idelab.org/blog/IDE%20-%20Por%20qu%C3%A9%20evaluar.pdf">Leer +</a>
+      </div>
+
+      <div class="pub-row" data-topic="Océanos">
+        <span class="pub-tag">Océanos</span>
         <div>
           <h3>Responsabilidad ética en la pesca y acuicultura</h3>
-		  <h6>Columna de opinión</h6>
+          <p>La sobreexplotación y la pesca ilegal, no declarada y no reglamentada se han convertido en graves amenazas para los ecosistemas acuáticos. Es necesario reforzar la gobernanza para garantizar el cumplimiento de los objetivos de sostenibilidad y la protección del medio ambiente.</p>
+        </div>
+        <a class="story-link" href="https://idelab.org/blog/IDE%20-%20Responsabilidad%20%C3%A9tica%20en%20la%20pesca.pdf">Leer +</a>
+      </div>
+
+      <div class="pub-row" data-topic="Océanos">
+        <span class="pub-tag">Océanos</span>
+        <div>
+          <h3>Responsabilidad ética en la pesca y acuicultura</h3>
           <p>La sobreexplotación y la pesca ilegal, no declarada y no reglamentada se han convertido en graves amenazas para los ecosistemas acuáticos. Es necesario reforzar la gobernanza para garantizar el cumplimiento de los objetivos de sostenibilidad y la protección del medio ambiente.</p>
         </div>
         <a class="story-link" href="https://idelab.org/blog/IDE%20-%20Responsabilidad%20%C3%A9tica%20en%20la%20pesca.pdf">Leer +</a>
@@ -364,5 +359,23 @@
   </div>
 </footer>
 
+
+<script>
+(function(){
+  var btn = document.getElementById('burgerBtn');
+  var menu = document.getElementById('mobileMenu');
+  if(!btn || !menu) return;
+  btn.addEventListener('click', function(){
+    var isOpen = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      menu.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+  });
+})();
+</script>
 </body>
 </html>

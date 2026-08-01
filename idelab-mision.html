@@ -228,16 +228,29 @@
 
 <header>
   <nav class="wrap">
-	<a href="index.html" class="brand"><img src="images/logo_ide_transp.png" alt="logo" class="logo"></a>    <div class="navlinks">
-      <a href="idelab-mision.html">Misión y Visión</a>
+    <a href="idelab-rediseno.html" class="brand"><img src="images/logo_ide.png" alt="IDE — Innovación, Desarrollo y Equidad" class="logo"></a>
+    <div class="navlinks">
+      <a href="idelab-mision.html" class="active">Misión y Visión</a>
       <a href="idelab-equipo.html">Equipo</a>
       <a href="idelab-quehacemos.html">Qué hacemos</a>
       <a href="idelab-proyectos.html">Proyectos</a>
       <a href="idelab-publicaciones.html">Publicaciones</a>
-      <a href="#contacto">Contacto</a>
+      <a href="idelab-contacto.html">Contacto</a>
     </div>
-    <a href="#contacto" class="navcta">Trabajemos juntos</a>
+    <a href="idelab-contacto.html" class="navcta desktop-cta">Trabajemos juntos</a>
+    <button class="burger" id="burgerBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="idelab-mision.html" class="active">Misión y Visión</a>
+      <a href="idelab-equipo.html">Equipo</a>
+      <a href="idelab-quehacemos.html">Qué hacemos</a>
+      <a href="idelab-proyectos.html">Proyectos</a>
+      <a href="idelab-publicaciones.html">Publicaciones</a>
+      <a href="idelab-contacto.html">Contacto</a>
+    <a href="idelab-contacto.html" class="navcta">Trabajemos juntos</a>
+  </div>
 </header>
 
 <section class="page-hero" style="--accent:#9c4a24; --hero-bg:#f1e0d3">
@@ -245,8 +258,7 @@
     <span class="eyebrow">Nosotros</span>
     <p class="crumb"><a href="idelab-rediseno.html">Inicio</a> / Misión y Visión</p>
     <h1>Misión y <mark>Visión</mark></h1>
-    <p class="lead">Motivados por la innovación social y la participación ciudadana, trabajamos por una ciudadanía empoderada, con herramientas para ejecutar programas 
-	sociales eficientes y bien diseñados, basados en evidencia empírica y el análisis de grandes datos, con el potencial de mejorar la vida de las personas.</p>
+    <p class="lead">Motivados por la innovación social y la participación ciudadana, trabajamos por una ciudadanía empoderada, con herramientas para ejecutar programas sociales eficientes y bien diseñados, basados en evidencia empírica y el análisis de grandes datos, con el potencial de mejorar la vida de las personas.</p>
   </div>
 </section>
 
@@ -260,7 +272,7 @@
     <div class="mv-grid">
       <div class="mv-card">
         <span class="num">01 — Misión</span>
-        <h2>Impacto medible</h2>
+        <h2>Impacto medible, hoy</h2>
         <p>Nuestro objetivo es impulsar programas sociales con gran impacto social y ambiental, basados en la evidencia empírica, que promuevan un desarrollo sostenible y equitativo, y aseguren el acceso a derechos fundamentales a toda persona, independiente de su nivel socioeconómico.</p>
       </div>
       <div class="mv-card">
@@ -284,7 +296,7 @@
       </div>
       <div class="principio">
         <span class="num">Evidencia</span>
-        <h3>Datos que informan</h3>
+        <h3>Datos que deciden</h3>
         <p>La evidencia empírica y el análisis de datos deben guiar las decisiones administrativas para asegurar un mayor impacto.</p>
       </div>
       <div class="principio">
@@ -355,5 +367,23 @@
   </div>
 </footer>
 
+
+<script>
+(function(){
+  var btn = document.getElementById('burgerBtn');
+  var menu = document.getElementById('mobileMenu');
+  if(!btn || !menu) return;
+  btn.addEventListener('click', function(){
+    var isOpen = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      menu.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+  });
+})();
+</script>
 </body>
 </html>
