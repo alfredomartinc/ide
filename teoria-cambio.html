@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teoría del Cambio — IDE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0e2a28; --teal:#1c5a54; --clay:#b8562a; --sand:#f5f0e4; --sage:#7c9473;
+    --paper:#fbf8f1; --text:#22302c; --line: rgba(14,42,40,0.14); --maxw: 1100px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{ font-family:'Inter', sans-serif; color:var(--text); background:var(--paper); line-height:1.6; -webkit-font-smoothing:antialiased; }
+  @media (prefers-reduced-motion: reduce){ *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;} }
+  h1,h2,h3,h4{ font-family:'Fraunces', serif; font-weight:600; color:var(--ink); line-height:1.1; letter-spacing:-0.01em; }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+  .eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--clay); font-weight:500; }
+
+  /* ---------- NAV ---------- */
+  header{ position:sticky; top:0; z-index:50; background:rgba(251,248,241,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  nav.wrap{ display:flex; align-items:center; justify-content:space-between; padding-top:16px; padding-bottom:16px; gap:20px; max-width:1180px; }
+  .brand{ display:flex; align-items:center; gap:10px; }
+  .brand .logo{ height:44px; width:auto; display:block; flex-shrink:0; }
+  .navlinks{ display:flex; gap:22px; font-size:14px; font-weight:500; }
+  .navlinks a{ position:relative; padding:4px 0; color:var(--ink); opacity:0.82; white-space:nowrap; }
+  .navlinks a:hover, .navlinks a.active{ opacity:1; }
+  .navlinks a::after{ content:''; position:absolute; left:0; bottom:-2px; width:0; height:1.5px; background:var(--clay); transition:width 0.25s ease; }
+  .navlinks a:hover::after, .navlinks a.active::after{ width:100%; }
+  .navcta{ font-size:13.5px; font-weight:600; padding:10px 18px; border-radius:100px; background:var(--ink); color:var(--paper); white-space:nowrap; }
+
+  /* ---------- PAGE HERO ---------- */
+  .page-hero{ padding:64px 0 60px; position:relative; background:#f2e4d6; border-bottom:1px solid var(--line); }
+  .page-hero::before{ content:''; position:absolute; left:0; top:0; bottom:0; width:7px; background:#a1442e; }
+  .page-hero .eyebrow{ color:#a1442e; }
+  .page-hero .crumb{ font-size:13px; color:#5a655f; margin-top:10px; }
+  .page-hero .crumb a{ color:var(--ink); opacity:0.75; }
+  .page-hero .crumb a:hover{ text-decoration:underline; }
+  .page-hero h1{ font-size:clamp(32px, 4.6vw, 52px); margin-top:16px; max-width:18ch; }
+  .page-hero h1 mark{ background:none; color:inherit; position:relative; padding:0 2px; }
+  .page-hero h1 mark::after{ content:''; position:absolute; left:-2px; right:-2px; bottom:2px; height:0.3em; background:#a1442e; opacity:0.32; z-index:-1; }
+  .page-hero p.lead{ margin-top:22px; font-size:18px; max-width:62ch; color:#3c4b45; }
+
+  /* ---------- GENERIC SECTIONS ---------- */
+  section{ padding:72px 0; }
+  section.tint{ background:var(--sand); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .section-head{ max-width:62ch; margin-bottom:40px; }
+  .section-head h2{ font-size:32px; margin-top:10px; }
+  .section-head p{ margin-top:14px; font-size:16px; color:#3c4b45; }
+  p.body{ font-size:16px; color:#3c4b45; max-width:70ch; margin-bottom:18px; }
+
+  .callout{
+    margin:26px 0; padding:22px 26px; border-left:3px solid var(--clay); background:var(--sand);
+    border-radius:0 12px 12px 0; max-width:70ch;
+  }
+  .callout p{ font-family:'Fraunces', serif; font-style:italic; font-size:18px; color:var(--teal); line-height:1.5; }
+
+  /* ---------- STAIRCASE DIAGRAM ---------- */
+  .staircase{ margin-top:20px; display:flex; flex-direction:column; gap:2px; }
+  .step{
+    display:grid; grid-template-columns:450px 1fr; gap:24px; align-items:center;
+    padding:20px 24px; border-radius:12px; position:relative;
+  }
+  .step .stepnum{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--paper); opacity:0.85; }
+  .step h4{ color:var(--paper); font-size:19px; margin-top:4px; }
+  .step p{ color:rgba(251,248,241,0.82); font-size:13.5px; margin-top:6px; }
+  .step .q{ font-family:'IBM Plex Mono', monospace; font-size:12px; text-align:right; color:var(--paper); opacity:0.75; }
+  .step-connector{ display:flex; justify-content:center; }
+  .step-connector svg{ width:20px; height:20px; }
+
+  .step.s1{ background:var(--ink); }
+  .step.s2{ background:#1c4a45; }
+  .step.s3{ background:#2b6058; }
+  .step.s4{ background:#3f766b; }
+  .step.s5{ background:var(--clay); }
+
+  /* ---------- IMPORTANCE CARDS ---------- */
+  .imp-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border-radius:16px; overflow:hidden; border:1px solid var(--line); margin-top:10px; }
+  .imp-card{ background:var(--paper); padding:30px 32px; }
+  .imp-card .eyebrow{ color:var(--teal); }
+  .imp-card h3{ font-size:20px; margin-top:12px; margin-bottom:10px; }
+  .imp-card p{ font-size:14.5px; color:#3c4b45; }
+
+  /* ---------- EXAMPLE / OBJETIVO ---------- */
+  .goal-hero{
+    background:var(--ink); color:var(--paper); border-radius:18px; padding:40px 44px; margin:30px 0 40px;
+  }
+  .goal-hero .eyebrow{ color:#e2a184; }
+  .goal-hero p{ font-family:'Fraunces', serif; font-size:23px; line-height:1.5; margin-top:14px; }
+  .goal-hero p b{ color:#e2a184; font-weight:600; }
+
+ /* ---------- DIAGRAMA DE DOS RAMAS ---------- */
+  .tdc2{ margin:36px 0 10px; overflow-x:auto; }
+  .tdc2-inner{ min-width:760px; }
+  .tdc2-top{
+    background:linear-gradient(160deg, var(--accent, var(--clay)), #6b3d1a); color:var(--paper);
+    border-radius:12px; padding:18px 24px; font-size:13.5px; font-weight:600; text-align:center;
+    max-width:520px; margin:0 auto 10px; box-shadow:0 6px 14px rgba(14,42,40,0.12); line-height:1.4;
+  }
+  .tdc2-branches{ display:grid; grid-template-columns:1fr 1fr; gap:28px; }
+  .branch-head{
+    text-align:center; font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--teal); margin-bottom:10px; font-weight:600;
+  }
+  .branch-head.b{ color:var(--accent, var(--clay)); }
+  .tier-row{ display:flex; gap:8px; margin-bottom:8px; }
+  .tbox{
+    flex:1; background:linear-gradient(160deg, var(--sage), var(--teal)); color:var(--paper);
+    border-radius:10px; padding:11px 13px; font-size:11.5px; font-weight:600; line-height:1.35; text-align:center;
+    display:flex; align-items:center; justify-content:center; min-height:56px;
+  }
+  .tdc2-branches .branch.b .tbox{ background:linear-gradient(160deg, #cf8f6a, var(--accent, var(--clay))); }
+  .tier-arrow{ text-align:center; color:#8a8f7a; font-size:14px; margin:2px 0 8px; }
+  .tier-label{
+    text-align:center; font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:0.06em;
+    text-transform:uppercase; color:#8a8f7a; margin:14px 0 6px;
+  }
+
+  /* ---------- TABLA SUPUESTOS / INDICADORES ---------- */
+  table.assump{ width:100%; border-collapse:collapse; margin:22px 0 30px; border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+  table.assump th{ background:var(--ink); color:var(--paper); text-align:left; padding:12px 16px; font-family:'Fraunces', serif; font-size:15px; font-weight:600; }
+  table.assump td{ vertical-align:top; padding:16px; width:50%; border-top:1px solid var(--line); background:var(--paper); }
+  table.assump ul{ list-style:none; display:flex; flex-direction:column; gap:10px; }
+  table.assump li{ font-size:14px; color:#3c4b45; padding-left:16px; position:relative; }
+  table.assump li::before{ content:'–'; position:absolute; left:0; color:var(--accent, var(--clay)); }
+  
+  /* ---------- FOOTER ---------- */
+
+  footer{ background:rgba(25,25,25,0.9); color:var(--sand); padding:64px 0 30px; }
+  .foot-grid{ display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:40px; padding-bottom:40px; border-bottom:1px solid rgba(245,240,228,0.14); }
+  .foot-brand{ font-family:'Fraunces', serif; font-size:24px; font-weight:700; color:var(--paper); }
+  .foot-grid p{ font-size:14px; color:rgba(245,240,228,0.68); margin-top:14px; max-width:36ch; }
+  footer h4{ color:var(--paper); font-size:13px; letter-spacing:0.08em; text-transform:uppercase; font-family:'IBM Plex Mono',monospace; font-weight:500; margin-bottom:16px;}
+  footer ul{ list-style:none; display:flex; flex-direction:column; gap:10px; }
+  footer ul a{ font-size:14.5px; color:rgba(245,240,228,0.82); }
+  footer ul a:hover{ color:var(--clay); }
+  .foot-bottom{ padding-top:24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-size:13px; color:rgba(245,240,228,0.5); }
+  .foot-social{ display:flex; gap:14px; }
+  .foot-social a{ width:34px; height:34px; border-radius:50%; border:1px solid rgba(245,240,228,0.3); display:flex; align-items:center; justify-content:center; font-size:13px; }
+  .foot-social a:hover{ border-color:var(--clay); color:var(--clay); }
+
+  @media (max-width: 860px){
+    .navlinks{ display:none; }
+    .imp-grid{ grid-template-columns:1fr; }
+    .aa-grid{ grid-template-columns:1fr; }
+    .step{ grid-template-columns:1fr; gap:6px; }
+    .step .q{ text-align:left; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+	<a href="idelab-rediseno.html" class="brand"><img src="images/logo_ide_transp.png" alt="logo" class="logo"></a>    <div class="navlinks">
+      <a href="idelab-mision.html">Misión y Visión</a>
+      <a href="idelab-equipo.html">Equipo</a>
+      <a href="idelab-quehacemos.html">Qué hacemos</a>
+      <a href="idelab-proyectos.html">Proyectos</a>
+      <a href="idelab-publicaciones.html">Publicaciones</a>
+      <a href="idelab-contacto.html">Contacto</a>
+    </div>
+    <a href="#contacto" class="navcta">Trabajemos juntos</a>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow">Metodología</span>
+    <p class="crumb"><a href="idelab-rediseno.html">Inicio</a> / Teoría del Cambio</p>
+    <h1>Nuestra <mark>Teoría del Cambio</mark></h1>
+    <p class="lead">Toda organización que busca tener un impacto en la sociedad tiene, detrás de su forma de trabajar, una idea de qué cambio quiere generar y cómo. La Teoría del Cambio (TdC) es la forma en que hacemos explícita esa idea, para poder ponerla a prueba en vez de darla por sentada.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Qué es</span>
+      <h2>Una teoría, no un acto de fe</h2>
+    </div>
+    <p class="body">Sea erradicar pobreza, crear conciencia ambiental o proteger derechos de consumidores, ese cambio deseado es el motivo final y el principal motor de las acciones que una organización toma. Aunque muchas veces se encuentra de forma implícita, toda organización tiene una teoría de qué debe hacer para lograr el objetivo que persigue.</p>
+    <p class="body">La Teoría del Cambio explicita esa teoría por medio de una descripción gráfica del proceso que nos permitirá alcanzar el cambio deseado, resaltando los supuestos que se deben cumplir y los mecanismos que usaremos para evaluarlos.</p>
+    <div class="callout">
+      <p>«Esto nos permite analizar nuestra teoría, adaptarla y volver a evaluarla con el fin de encontrar el mecanismo que mejor sirva a nuestro objetivo. Tener claridad sobre los supuestos y definir indicadores adecuados para su análisis es fundamental en el éxito de nuestro trabajo.»</p>
+    </div>
+  </div>
+</section>
+
+<section class="tint">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Cómo funciona</span>
+      <h2>Una escalera construida al revés</h2>
+      <p>Comenzamos con una definición concisa, clara y medible del cambio que queremos generar, y vamos bajando escalón por escalón hasta llegar a lo más concreto: qué insumos necesitamos para dar el primer paso. En cada escalón nos preguntamos qué debe ocurrir para llegar al de arriba, y qué supuesto estamos haciendo al afirmarlo.</p>
+    </div>
+
+    <div class="staircase">
+      <div class="step s1">
+        <div>
+          <span class="stepnum">01 · Resultado final</span>
+          <h4>El cambio de largo plazo que buscamos</h4>
+        </div>
+        <span class="q">¿cuál es nuestro objetivo?</span>
+      </div>
+      <div class="step s2">
+        <div>
+          <span class="stepnum">02 · Resultados intermedios</span>
+          <h4>Lo que debe ocurrir antes, en el mediano plazo</h4>
+        </div>
+        <span class="q">¿qué debe pasar primero?</span>
+      </div>
+      <div class="step s3">
+        <div>
+          <span class="stepnum">03 · Outputs</span>
+          <h4>Los productos concretos que generamos</h4>
+        </div>
+        <span class="q">¿qué debemos producir?</span>
+      </div>
+      <div class="step s4">
+        <div>
+          <span class="stepnum">04 · Acciones</span>
+          <h4>Lo que hacemos para lograr esos productos</h4>
+        </div>
+        <span class="q">¿qué actividades realizamos?</span>
+      </div>
+      <div class="step s5">
+        <div>
+          <span class="stepnum">05 · Insumos</span>
+          <h4>Lo que necesitamos para actuar</h4>
+        </div>
+        <span class="q">¿qué recursos requerimos?</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Por qué importa</span>
+      <h2>Del entusiasmo a la evidencia</h2>
+      <p>Una TdC bien definida es clave: saltarse un escalón, un supuesto mal definido o un indicador engañoso pueden causar un paso en falso y estancarnos en nuestra búsqueda.</p>
+    </div>
+    <div class="imp-grid">
+      <div class="imp-card">
+        <span class="eyebrow">Utilidad interna</span>
+        <h3>Lo que se mide, se logra</h3>
+        <p>Nos permite pasar del cambio como un acto de entusiasmo hacia la medición y objetividad del mismo: desarrollo estratégico y evaluación de programas.</p>
+      </div>
+      <div class="imp-card">
+        <span class="eyebrow">Utilidad externa</span>
+        <h3>Una mapa que podemos seguir</h3>
+        <p>Mostramos con claridad cómo queremos lograr nuestro objetivo y cómo nuestros indicadores muestran que vamos por el camino correcto — y cómo lo hemos corregido cuando no era así.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tint">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Teoría del Cambio de iDE</span>
+      <h2>Nuestra Teoría del Cambio</h2>
+      <p>iDE se formó bajo la convicción de que toda persona debiese gozar plenamente de sus derechos fundamentales y tener una vida digna, independiente de su condición social, nacionalidad u orientación sexual. Este es el objetivo final más concreto que usamos para poder evaluar el impacto real de nuestras acciones.</p>
+    </div>
+
+    <div class="goal-hero">
+      <span class="eyebrow">Objetivo principal</span>
+      <p>Impulsar programas sociales con gran impacto social y ambiental, basados en la evidencia empírica, que promuevan un <b>desarrollo sostenible y equitativo</b>, 
+	y aseguren el acceso a derechos fundamentales a toda persona, independiente de su nivel socioeconómico.</p>
+    </div>
+
+    <p class="body">Para lograr este objetivo final necesitamos que <b>a)</b> organizaciones, públicas o privadas, tomen decisiones que mejoren la efectividad y eficiencia de sus programas; y <b>b)</b> que la sociedad civil elabore y ejecute más programas sociales bien definidos y con implementación profesional.</p>
+
+
+    <div class="tdc2">
+      <div class="tdc2-inner">
+        <div class="tdc2-top">Políticas públicas y programas efectivos impulsan un desarrollo sostenible, inclusivo y equitativo, garantizando el ejercicio pleno de los derechos fundamentales de todas las personas. </div>
+		<div class="tier-arrow">↓</div>
+        <div class="tdc2-branches">
+          <div class="branch a">
+            <div class="branch-head">Rama Consultora</div>
+            <div class="tier-label">Resultado intermedio</div>
+            <div class="tier-row">
+              <div class="tbox">Organizaciones públicas y privadas diseñan, monitorean y evalúan programas sociales más efectivos</div>
+			  <div class="tbox">Políticas públicas basadas en evidencia y con enfoque en derechos humanos</div>
+            </div>
+            <div class="tier-arrow">↓</div>
+            <div class="tier-label">Outputs</div>
+            <div class="tier-row">
+              <div class="tbox">Evaluaciones de impacto y desempeño entregadas</div>
+              <div class="tbox">Estudios e investigaciones publicados</div>
+            </div>
+            <div class="tier-row">
+              <div class="tbox">Equipos capacitados en TdC, evaluación y datos</div>
+			  <div class="tbox">Redes creadas con organizaciones</div>
+            </div>
+			<div class="tier-row">
+              <div class="tbox">Difusión de investigación y herramientas para ONGs</div>
+            </div>
+            <div class="tier-arrow">↓</div>
+            <div class="tier-label">Acciones (Qué hacemos)</div>
+            <div class="tier-row">
+              <div class="tbox">Evaluación de Programas</div>
+              <div class="tbox">Investigación y Estudios</div>
+              <div class="tbox">Capacitaciones</div>
+            </div>
+            <div class="tier-arrow">↓</div>
+            <div class="tier-label">Insumos</div>
+            <div class="tier-row">
+              <div class="tbox">Consultores y evaluadores, softwares de análisis, alianzas académicas, financiamiento de proyectos e investigación</div>
+            </div>
+          </div>
+
+          <div class="branch b">
+            <div class="branch-head b">Rama Incubadora</div>
+            <div class="tier-label">Resultado intermedio</div>
+            <div class="tier-row">
+              <div class="tbox">Comunidades y sociedad civil empoderada ejecutan proyectos de innovación social y ambiental con alto impacto</div>
+            </div>
+            <div class="tier-arrow">↓</div>
+            <div class="tier-label">Outputs</div>
+            <div class="tier-row">
+              <div class="tbox">Proyectos generados </div>
+              <div class="tbox">Cooperativa/organización comunitaria constituida</div>
+            </div>
+            <div class="tier-row">
+              <div class="tbox">Financiamiento asegurado</div>
+			  <div class="tbox">Difusión de proyectos</div>
+            </div>
+			<div class="tier-row">
+              <div class="tbox">Alianzas con el sector empresarial y sin fines de lucro</div>
+            </div>
+            <div class="tier-arrow">↓</div>
+            <div class="tier-label">Acciones (Qué hacemos)</div>
+            <div class="tier-row">
+              <div class="tbox">Incubadora Social — modelo lógico, financiamiento, formación y M&E de proyectos</div>
+            </div>
+            <div class="tier-arrow">↓</div>
+            <div class="tier-label">Insumos</div>
+            <div class="tier-row">
+              <div class="tbox">Infraestructura en desuso, equipo de incubación, financiamiento semilla/crowdfunding, alianzas locales</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  
+      <div class="section-head" style="margin-top:52px;">
+      <span class="eyebrow">Supuestos e indicadores</span>
+      <h2>Cómo sabremos que vamos por buen camino</h2>
+    </div>
+
+    <p class="body-text">Estos son los supuestos generales detrás de nuestra teoría — las creencias que deben ser ciertas para que el modelo funcione — y los indicadores que proponemos para evaluarlos.</p>
+
+    <table class="assump">
+      <tr><th>Supuestos</th><th>Indicadores propuestos</th></tr>
+      <tr>
+        <td><ul>
+          <li>Programas diseñados con evidencia empírica generan mayor impacto en el acceso a derechos fundamentales</li>
+          <li>La reinversión de utilidades de la consultora fortalece la sostenibilidad de la incubadora</li>
+          <li>Mayor participación ciudadana mejora el diseño y la apropiación de los proyectos incubados</li>
+		  <li>Organizaciones utilizan herramientas adquiridas en el largo plazo</li>
+		  <li>Investigaciones académicas tienen un impacto en políticas públicas</li>
+        </ul></td>
+        <td><ul>
+          <li>N° de programas que modifican su diseño tras una evaluación o consultoría de IDE</li>
+          <li>% de utilidades de la consultora reinvertidas en proyectos incubados</li>
+          <li>N° de evaluaciones de impacto y capacitaciones realizadas</li>
+		  <li>N° de organizaciones utilizando un sistema de medición de desempeño</li>
+          <li>N° de publicaciones y estudios difundidos por año</li>
+		  <li>Programas sociales diseñados y con financiamiento asegurado</li>
+		  <li>Vigencia de programas sociales diseñados 3 y 5 años después</li>
+        </ul></td>
+      </tr>
+    </table>
+
+  </div>
+</section>
+
+<footer id="contacto">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <span class="foot-brand">IDE</span>
+        <p>Consultora sin fines de lucro e incubadora de innovación social. Diseño, monitoreo y evaluación de programas con enfoque en evidencia.</p>
+      </div>
+      <div>
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="idelab-mision.html">Misión y Visión</a></li>
+          <li><a href="idelab-equipo.html">Equipo</a></li>
+          <li><a href="idelab-quehacemos.html">Qué hacemos</a></li>
+          <li><a href="idelab-proyectos.html">Proyectos</a></li>
+          <li><a href="idelab-publicaciones.html">Publicaciones</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="mailto:proyectos@idelab.org">proyectos@idelab.org</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 IDE — Innovación, Desarrollo y Evidencia</span>
+      <div class="foot-social">
+        <a href="#" aria-label="LinkedIn">in</a>
+        <a href="#" aria-label="Instagram">ig</a>
+        <a href="#" aria-label="Correo">@</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

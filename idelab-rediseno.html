@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IDE — Innovación, Desarrollo y Evidencia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0e2a28;
+    --teal:#1c5a54;
+    --clay:#b8562a;
+    --sand:#f5f0e4;
+    --sage:#7c9473;
+    --paper:#fbf8f1;
+    --text:#22302c;
+    --line: rgba(14,42,40,0.14);
+    --maxw: 1180px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter', sans-serif;
+    color:var(--text);
+    background:var(--paper);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+  h1,h2,h3,h4{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    color:var(--ink);
+    line-height:1.08;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--clay);
+    font-weight:500;
+  }
+
+  /* ---------- HORIZON MOTIF (signature element) ---------- */
+  .horizon{
+    width:100%; height:34px; display:block;
+  }
+  .horizon path{ stroke:var(--sand); stroke-width:1.4; fill:none; opacity:0.55; }
+  .horizon path.b{ stroke:var(--clay); opacity:0.9; }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(251,248,241,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:18px; padding-bottom:18px;
+    gap:24px;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Fraunces', serif; font-weight:700; font-size:22px; color:var(--ink);
+  }
+  .brand .logo{ height:50px; width:auto; display:block; flex-shrink:0; 
+  }
+  .brand .mark{
+    width:34px; height:34px; border-radius:50%;
+    background:conic-gradient(from 200deg, var(--teal), var(--sage) 40%, var(--clay) 75%, var(--teal));
+    flex-shrink:0;
+  }
+  .navlinks{ display:flex; gap:22px; font-size:14px; font-weight:500; }
+  .navlinks a{ position:relative; padding:4px 0; color:var(--ink); opacity:0.82; white-space:nowrap; }
+  .navlinks a:hover{ opacity:1; }
+  .navlinks a::after{
+    content:''; position:absolute; left:0; bottom:-2px; width:0; height:1.5px;
+    background:var(--clay); transition:width 0.25s ease;
+  }
+  .navlinks a:hover::after{ width:100%; }
+  .navcta{
+    font-size:13.5px; font-weight:600; padding:10px 18px; border-radius:100px;
+    background:var(--ink); color:var(--paper); white-space:nowrap;
+  }
+  .burger{ display:none; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:20px 0 64px; position:relative;
+    background:var(--hero-bg, var(--paper));
+    border-bottom:1px solid var(--line);
+  }
+  .hero::before{
+    content:''; position:absolute; left:0; top:0; bottom:0; width:7px;
+    background:var(--accent, var(--clay));
+  }
+  .masthead{
+    display:flex; align-items:center; gap:10px; padding-bottom:20px; margin-bottom:36px;
+    border-bottom:1px solid var(--line);
+    font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:0.08em;
+    text-transform:uppercase; color:#5a655f;
+  }
+  .masthead .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent, var(--clay)); }
+  .hero .wrap{ position:relative; z-index:1; }
+  .hero-grid{
+    display:grid; grid-template-columns: 1.15fr 0.85fr; gap:56px; align-items:end;
+  }
+  .hero h1{
+    font-size:clamp(34px, 4.6vw, 56px);
+    margin-top:16px; color:var(--ink);
+  }
+  .hero h1 mark{
+    background:none; color:inherit; position:relative; padding:0 2px;
+  }
+  .hero h1 mark::after{
+    content:''; position:absolute; left:-2px; right:-2px; bottom:2px; height:0.32em;
+    background:var(--accent, var(--clay)); opacity:0.32; z-index:-1;
+  }
+  .hero p.lead{
+    margin-top:20px; font-size:18px; max-width:52ch; color:#3c4b45;
+  }
+  .hero-actions{ margin-top:30px; display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:13px 22px; border-radius:100px; font-weight:600; font-size:14.5px;
+    border:1px solid var(--ink); transition:transform 0.18s ease, background 0.18s ease;
+  }
+  .btn-solid{ background:var(--ink); color:var(--paper); }
+  .btn-solid:hover{ transform:translateY(-2px); background:var(--accent, var(--clay)); border-color:var(--accent, var(--clay)); }
+  .btn-ghost{ background:transparent; color:var(--ink); }
+  .btn-ghost:hover{ transform:translateY(-2px); background:rgba(14,42,40,0.06); }
+
+  .hero-side{
+    border-left:1px solid var(--line); padding-left:36px;
+    display:flex; flex-direction:column; gap:22px;
+  }
+  .side-stat b{
+    font-family:'Fraunces', serif; font-size:34px; color:var(--accent, var(--clay)); display:block; font-weight:600;
+  }
+  .side-stat span{ font-size:13.5px; color:#5a655f; }
+
+  /* ---------- FEATURED CAROUSEL ---------- */
+  section.stories{ padding:64px 0; }
+  .stories-head{
+    display:flex; justify-content:space-between; align-items:baseline; gap:20px; margin-bottom:32px;
+    flex-wrap:wrap;
+  }
+  .stories-head h2{ font-size:30px; }
+
+  .carousel{ position:relative; }
+  .carousel-viewport{
+    overflow:hidden; border-radius:18px; border:1px solid var(--line);
+  }
+  .carousel-track{
+    display:flex; transition:transform 0.6s cubic-bezier(.4,0,.2,1);
+  }
+  .slide{
+    min-width:100%; position:relative; height:420px;
+    display:flex; align-items:flex-end;
+  }
+  .slide-media{ position:absolute; inset:0; }
+  .slide-media svg{ width:100%; height:100%; }
+  .slide-overlay{
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(14,42,40,0) 30%, rgba(14,42,40,0.88) 100%);
+  }
+  .slide-content{ position:relative; padding:44px; max-width:620px; }
+  .slide-content .eyebrow{ color:var(--sand); opacity:0.8; }
+  .slide-content h3{ color:var(--paper); font-size:clamp(22px,3vw,30px); margin-top:10px; }
+  .slide-content p{ color:rgba(245,240,228,0.85); font-size:15px; margin-top:12px; max-width:52ch; }
+  .slide-content .story-link{ color:var(--sand); display:inline-block; margin-top:16px; font-weight:600; }
+  .slide-content .story-link:hover{ text-decoration:underline; }
+
+  .carousel-controls{
+    position:absolute; top:50%; left:0; right:0; transform:translateY(-50%);
+    display:flex; justify-content:space-between; padding:0 16px; pointer-events:none;
+  }
+  .carousel-btn{
+    pointer-events:auto; width:42px; height:42px; border-radius:50%; border:none;
+    background:rgba(251,248,241,0.92); color:var(--ink); font-size:17px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    transition:background 0.2s ease, transform 0.2s ease;
+  }
+  .carousel-btn:hover{ background:var(--paper); transform:scale(1.06); }
+
+  .carousel-dots{ display:flex; justify-content:center; gap:8px; margin-top:20px; }
+  .dot{
+    width:8px; height:8px; border-radius:50%; border:none; background:var(--line);
+    cursor:pointer; padding:0; transition:width 0.25s ease, background 0.25s ease;
+  }
+  .dot[aria-current="true"]{ width:24px; border-radius:5px; background:var(--clay); }
+
+  .story-link{ font-size:13.5px; font-weight:600; color:var(--clay); }
+  .story-link:hover{ text-decoration:underline; }
+
+  @media (max-width: 640px){
+    .slide{ height:520px; }
+    .slide-content{ padding:28px; }
+  }
+
+  /* ---------- QUIENES SOMOS ---------- */
+  section.pillars{ background:var(--ink); color:var(--sand); padding:72px 0; }
+  .pillars .eyebrow{ color:var(--clay); }
+  .pillars h2{ color:var(--paper); font-size:32px; margin-top:10px; max-width:20ch; }
+  .pillar-grid{
+    margin-top:46px; display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    background:rgba(245,240,228,0.14); border-radius:16px; overflow:hidden;
+  }
+  .pillar{
+    background:var(--ink); padding:30px 28px 34px;
+  }
+  .pillar .num{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--sage); letter-spacing:0.1em;
+  }
+  .pillar h3{ color:var(--paper); font-size:21px; margin-top:14px; margin-bottom:12px; }
+  .pillar p{ font-size:14.5px; color:rgba(245,240,228,0.72); }
+
+  /* ---------- INCUBADORA ---------- */
+  section.incubator{ padding:80px 0; }
+  .inc-grid{
+    display:grid; grid-template-columns:0.9fr 1.1fr; gap:60px; align-items:center;
+  }
+  .inc-visual{
+    aspect-ratio:4/5; border-radius:18px; overflow:hidden;
+    background:linear-gradient(160deg, var(--sage), var(--teal) 70%);
+    position:relative;
+  }
+  .inc-visual svg{ position:absolute; inset:0; width:100%; height:100%; }
+  .inc-badge{
+    position:absolute; left:20px; bottom:20px; background:var(--paper); color:var(--ink);
+    padding:8px 14px; border-radius:100px; font-family:'IBM Plex Mono',monospace; font-size:12px;
+    font-weight:500;
+  }
+  .inc-text h2{ font-size:32px; margin-top:12px; }
+  .inc-text p{ margin-top:16px; font-size:15.5px; color:#3c4b45; max-width:56ch; }
+  .inc-text .btn{ margin-top:24px; }
+
+  /* ---------- PUBLICACIONES ---------- */
+  section.pubs{ background:var(--sand); padding:80px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .pubs-head{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:40px; flex-wrap:wrap; gap:16px;}
+  .pubs-head h2{ font-size:30px; }
+  .pub-list{ display:flex; flex-direction:column; }
+  .pub-row{
+    display:grid; grid-template-columns:100px 1fr auto; gap:26px; align-items:start;
+    padding:26px 0; border-top:1px solid var(--line);
+  }
+  .pub-list .pub-row:last-child{ border-bottom:1px solid var(--line); }
+  .pub-tag{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--teal); padding-top:4px;}
+  .pub-row h3{ font-size:19px; margin-bottom:8px; }
+  .pub-row p{ font-size:14.5px; color:#4a554f; max-width:70ch; }
+  .pub-row a.story-link{ align-self:center; white-space:nowrap; }
+
+  /* ---------- MISION / LA ONG ---------- */
+  section.about{ padding:90px 0; }
+  .about-grid{ display:grid; grid-template-columns:0.55fr 1fr; gap:50px; }
+  .about h2{ font-size:30px; max-width:14ch; }
+  .about p.big{
+    font-family:'Fraunces', serif; font-weight:400; font-size:26px; line-height:1.4; color:var(--ink);
+  }
+  .about p.big em{ font-style:normal; color:var(--clay); }
+
+  /* ---------- FOOTER / CONTACTO ---------- */
+  footer{ background:rgba(25,25,25,0.9); color:var(--sand); padding:64px 0 30px; }
+  .foot-grid{
+    display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:40px; padding-bottom:40px;
+    border-bottom:1px solid rgba(245,240,228,0.14);
+  }
+  .foot-brand{ font-family:'Fraunces', serif; font-size:24px; font-weight:700; color:var(--paper); }
+  .foot-grid p{ font-size:14px; color:rgba(245,240,228,0.68); margin-top:14px; max-width:36ch; }
+  footer h4{ color:var(--paper); font-size:13px; letter-spacing:0.08em; text-transform:uppercase; font-family:'IBM Plex Mono',monospace; font-weight:500; margin-bottom:16px;}
+  footer ul{ list-style:none; display:flex; flex-direction:column; gap:10px; }
+  footer ul a{ font-size:14.5px; color:rgba(245,240,228,0.82); }
+  footer ul a:hover{ color:var(--clay); }
+  .foot-bottom{
+    padding-top:24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;
+    font-size:13px; color:rgba(245,240,228,0.5);
+  }
+  .foot-social{ display:flex; gap:14px; }
+  .foot-social a{
+    width:34px; height:34px; border-radius:50%; border:1px solid rgba(245,240,228,0.3);
+    display:flex; align-items:center; justify-content:center; font-size:13px;
+  }
+  .foot-social a:hover{ border-color:var(--clay); color:var(--clay); }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 920px){
+    .navlinks{ display:none; }
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero-side{ border-left:none; border-top:1px solid var(--line); padding-left:0; padding-top:24px; flex-direction:row; flex-wrap:wrap; }
+    .pillar-grid{ grid-template-columns:1fr; }
+    .inc-grid{ grid-template-columns:1fr; }
+    .about-grid{ grid-template-columns:1fr; }
+    .foot-grid{ grid-template-columns:1fr; }
+    .pub-row{ grid-template-columns:70px 1fr; }
+    .pub-row a.story-link{ grid-column:2; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+	<a href="#" class="brand"><img src="images/logo_ide_transp.png" alt="logo" class="logo"></a>    <div class="navlinks">
+      <a href="idelab-mision.html">Misión y Visión</a>
+      <a href="idelab-equipo.html">Equipo</a>
+      <a href="idelab-quehacemos.html">Qué hacemos</a>
+      <a href="idelab-proyectos.html">Proyectos</a>
+      <a href="idelab-publicaciones.html">Publicaciones</a>
+      <a href="idelab-contacto.html">Contacto</a>
+    </div>
+    <a href="#contacto" class="navcta">Trabajemos juntos</a>
+  </nav>
+</header>
+
+<section class="hero" style="--accent:#c1543a; --hero-bg:#f3e3dc">
+  <div class="wrap">
+    <div class="masthead">
+      <span class="dot"></span>
+      <span></span>
+      <span>Fundada en 2012</span>
+      <span>·</span>
+      <span>Consultora sin fines de lucro</span>
+    </div>
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">Innovación · Desarrollo · Equidad</span>
+        <h1>De la innovación social al <mark>desarrollo sostenible.</mark></h1>
+        <p class="lead">Asesoramos a organizaciones sociales y agencias públicas en el diseño, monitoreo y evaluación de programas, y transformamos ideas en proyectos de innovación social con impacto medible.</p>
+        <div class="hero-actions">
+          <a class="btn btn-solid" href="teoria-cambio.html">Conoce nuestra Teoría del Cambio</a>
+          <a class="btn btn-ghost" href="#quienes">Qué hacemos</a>
+        </div>
+      </div>
+      <div class="hero-side">
+        <div class="side-stat"><b>3</b><span>líneas de trabajo: consultoría, incubación e investigación</span></div>
+        <div class="side-stat"><b>100%</b><span>de las utilidades se reinvierten en proyectos sociales</span></div>
+        <div class="side-stat"><b>2012</b><span>Nos contituímos como ONG</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<svg class="horizon" viewBox="0 0 1200 34" preserveAspectRatio="none">
+  <path d="M0 20 Q150 4 300 20 T600 20 T900 20 T1200 20" />
+  <path class="b" d="M0 26 Q150 12 300 26 T600 26 T900 26 T1200 26" />
+</svg>
+
+<section class="stories" id="hacemos">
+  <div class="wrap">
+    <div class="stories-head">
+      <div>
+        <span class="eyebrow">En foco</span>
+        <h2>Lo que estamos impulsando ahora</h2>
+      </div>
+    </div>
+
+    <div class="carousel" id="carousel" role="region" aria-roledescription="carrusel" aria-label="Historias destacadas">
+      <div class="carousel-viewport">
+        <div class="carousel-track" id="carouselTrack">
+
+          <div class="slide" role="group" aria-roledescription="diapositiva" aria-label="1 de 3">
+            <div class="slide-media" style="background:linear-gradient(160deg,#7c9473,#1c5a54)">
+              <svg viewBox="0 0 300 150" preserveAspectRatio="xMidYMid slice"><path d="M0 110 Q75 70 150 100 T300 90 V150 H0 Z" fill="rgba(245,240,228,0.18)"/><circle cx="235" cy="45" r="20" fill="rgba(245,240,228,0.35)"/></svg>
+            </div>
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+              <span class="eyebrow">Incubadora</span>
+              <h3>Radal: de termoeléctricas en desuso a espacio público vivo</h3>
+              <p>Reutilizamos infraestructura abandonada para crear espacios donde florezca el desarrollo sustentable y comunitario.</p>
+              <a class="story-link" href="https://idelab.org/proyectos.html">Leer más →</a>
+            </div>
+          </div>
+
+          <div class="slide" role="group" aria-roledescription="diapositiva" aria-label="2 de 3">
+            <div class="slide-media" style="background:linear-gradient(160deg,#3d7a8c,#0e2a28)">
+              <svg viewBox="0 0 300 150" preserveAspectRatio="xMidYMid slice"><path d="M0 130 L60 90 L120 120 L180 60 L240 100 L300 70 V150 H0 Z" fill="rgba(245,240,228,0.2)"/></svg>
+            </div>
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+              <span class="eyebrow">Océanos</span>
+              <h3>Rapa Nui, sede de la Cumbre de Líderes del Pacífico 2024</h3>
+              <p>Un encuentro clave por la protección de los océanos y el desafío del plástico y microplástico en la región.</p>
+              <a class="story-link" href="https://idelab.org/rapanui.html">Leer más →</a>
+            </div>
+          </div>
+
+          <div class="slide" role="group" aria-roledescription="diapositiva" aria-label="3 de 3">
+            <div class="slide-media" style="background:linear-gradient(160deg,#b8562a,#5c3018)">
+              <svg viewBox="0 0 300 150" preserveAspectRatio="xMidYMid slice"><rect x="30" y="40" width="20" height="90" fill="rgba(245,240,228,0.25)"/><rect x="70" y="70" width="20" height="60" fill="rgba(245,240,228,0.35)"/><rect x="110" y="20" width="20" height="110" fill="rgba(245,240,228,0.2)"/></svg>
+            </div>
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+              <span class="eyebrow">Evaluación de impacto</span>
+              <h3>Maximizar el impacto en la era de la información</h3>
+              <p>Por qué evaluar programas sociales: beneficios y desafíos de las evaluaciones de impacto, y cómo avanzar.</p>
+              <a class="story-link" href="https://idelab.org/blog/IDE%20-%20Por%20qu%C3%A9%20evaluar.pdf">Leer más →</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="carousel-controls">
+        <button class="carousel-btn" id="carouselPrev" aria-label="Historia anterior">‹</button>
+        <button class="carousel-btn" id="carouselNext" aria-label="Historia siguiente">›</button>
+      </div>
+
+      <div class="carousel-dots" id="carouselDots"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var track = document.getElementById('carouselTrack');
+  var slides = track.children;
+  var dotsWrap = document.getElementById('carouselDots');
+  var prevBtn = document.getElementById('carouselPrev');
+  var nextBtn = document.getElementById('carouselNext');
+  var carousel = document.getElementById('carousel');
+  var index = 0;
+  var timer = null;
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  for (var i = 0; i < slides.length; i++) {
+    var dot = document.createElement('button');
+    dot.className = 'dot';
+    dot.setAttribute('aria-label', 'Ir a la historia ' + (i + 1));
+    dot.addEventListener('click', (function(idx){ return function(){ goTo(idx); restart(); }; })(i));
+    dotsWrap.appendChild(dot);
+  }
+  var dots = dotsWrap.children;
+
+  function render(){
+    track.style.transform = 'translateX(-' + (index * 100) + '%)';
+    for (var d = 0; d < dots.length; d++) {
+      dots[d].setAttribute('aria-current', d === index ? 'true' : 'false');
+    }
+  }
+  function goTo(i){ index = (i + slides.length) % slides.length; render(); }
+  function next(){ goTo(index + 1); }
+  function prev(){ goTo(index - 1); }
+  function start(){ if (!reduceMotion) { timer = setInterval(next, 6000); } }
+  function stop(){ if (timer) { clearInterval(timer); timer = null; } }
+  function restart(){ stop(); start(); }
+
+  prevBtn.addEventListener('click', function(){ prev(); restart(); });
+  nextBtn.addEventListener('click', function(){ next(); restart(); });
+  carousel.addEventListener('mouseenter', stop);
+  carousel.addEventListener('mouseleave', start);
+  carousel.addEventListener('focusin', stop);
+  carousel.addEventListener('focusout', start);
+  carousel.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowRight') { next(); restart(); }
+    if (e.key === 'ArrowLeft') { prev(); restart(); }
+  });
+
+  render();
+  start();
+})();
+</script>
+
+<section class="pillars" id="quienes">
+  <div class="wrap">
+    <span class="eyebrow">Quiénes somos</span>
+    <h2>Tres formas de trabajar por el mismo objetivo.</h2>
+    <div class="pillar-grid">
+      <div class="pillar">
+        <span class="num">01 — Consultora</span>
+        <h3>Asesoría externa e independiente</h3>
+        <p>Apoyamos a organizaciones sin fines de lucro y agencias gubernamentales en el diseño, monitoreo y evaluación de programas sociales.</p>
+      </div>
+      <div class="pillar">
+        <span class="num">02 — Incubadora</span>
+        <h3>Innovación social</h3>
+        <p>Somos una plataforma para impulsar proyectos con impacto. Ayudamos a que ideas se transformen en proyectos escalables y medibles.</p>
+      </div>
+      <div class="pillar">
+        <span class="num">03 — Sin fines de lucro</span>
+        <h3>Consultoría que se reinvierte</h3>
+        <p>Nuestros consultores donan parte de su tiempo. Las ganancias se reinvierten en incubación de proyectos e investigación alineada a nuestros objetivos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="incubator" id="incubadora">
+  <div class="wrap inc-grid">
+    <div class="inc-visual">
+      <img src="images/Radal_largo.png">
+      <span class="inc-badge">Desde nuestra incubadora</span>
+    </div>
+    <div class="inc-text">
+      <span class="eyebrow">Proyecto insignia</span>
+      <h2>Radal — Cooperativa Ambiental</h2>
+      <p>Buscamos utilizar edificios históricos en desuso para generar un espacio público dinámico donde personas, empresas y organizaciones sociales converjan en torno al desarrollo sustentable.</p>
+      <p>Queremos revitalizar localidades postergadas por décadas como zonas de sacrificio ambiental: cultivo en granjas comunitarias, ferias semanales, talleres de concientización ambiental, caminatas y turismo ecológico respetuoso del entorno.</p>
+      <a class="btn btn-solid" href="idelab-proyectos.html">Ver el proyecto completo</a>
+      <a class="btn btn-ghost" href="https://idelab.org/blog/Radalpres.pdf">Descargar presentación (PDF)</a>
+    </div>
+  </div>
+</section>
+
+<section class="pubs" id="publicaciones">
+  <div class="wrap">
+    <div class="pubs-head">
+      <div>
+        <span class="eyebrow">Últimas publicaciones</span>
+        <h2>Ideas para políticas públicas basadas en evidencia</h2>
+      </div>
+      <a class="story-link" href="idelab-publicaciones.html">Ver todas las publicaciones →</a>
+    </div>
+    <div class="pub-list">
+      <div class="pub-row">
+        <span class="pub-tag">Energía</span>
+        <div>
+          <h3>Descarbonización e innovación energética</h3>
+          <p>La meta de carbono neutralidad y un sistema eléctrico 100% libre de emisiones al 2050 plantea dudas sobre los plazos para lograr una matriz de cero impacto, frente a los compromisos internacionales del país.</p>
+        </div>
+        <a class="story-link" href="https://idelab.org/blog/IDE%20-%20Descarbonizaci%C3%B3n%20e%20innovaci%C3%B3n.pdf">Leer →</a>
+      </div>
+      <div class="pub-row">
+        <span class="pub-tag">Ética</span>
+        <div>
+          <h3>Combatir la contaminación desde una ética responsable</h3>
+          <p>La contaminación atmosférica alcanzó peaks históricos en la última década. Nuevas tecnologías desarrolladas con una ética responsable e inclusiva pueden ser un gran avance frente a este desafío.</p>
+        </div>
+        <a class="story-link" href="https://idelab.org/blog/IDE%20-%20Combatir%20contaminacion%20desde%20una%20etica%20rsponsable%20e%20inclusiva.pdf">Leer →</a>
+      </div>
+      <div class="pub-row">
+        <span class="pub-tag">Océanos</span>
+        <div>
+          <h3>Responsabilidad ética en la pesca y acuicultura</h3>
+          <p>La sobreexplotación y la pesca ilegal amenazan los ecosistemas acuáticos. Es necesario reforzar la gobernanza para proteger la biodiversidad y cumplir los objetivos de sostenibilidad.</p>
+        </div>
+        <a class="story-link" href="https://idelab.org/blog/IDE%20-%20Responsabilidad%20%C3%A9tica%20en%20la%20pesca.pdf">Leer →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="wrap about-grid">
+    <div>
+      <span class="eyebrow">La ONG</span>
+      <h2>Nuestra convicción</h2>
+    </div>
+    <p class="big">Somos una consultora sin fines de lucro, guiados por la convicción de que la <em>innovación social</em> y la <em>evidencia empírica</em> deben guiar juntas el diseño de políticas públicas, para asegurar el pleno goce de los derechos fundamentales.</p>
+  </div>
+</section>
+
+<footer id="contacto">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <span class="foot-brand">IDE</span>
+        <p>Consultora sin fines de lucro e incubadora de innovación social. Diseño, monitoreo y evaluación de programas con enfoque en evidencia.</p>
+      </div>
+      <div>
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="idelab-mision.html">Misión y Visión</a></li>
+          <li><a href="idelab-equipo.html">Equipo</a></li>
+          <li><a href="idelab-quehacemos.html">Qué hacemos</a></li>
+          <li><a href="idelab-proyectos.html">Proyectos</a></li>
+          <li><a href="idelab-publicaciones.html">Publicaciones</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="mailto:proyectos@idelab.org">proyectos@idelab.org</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 IDE — Innovación, Desarrollo y Evidencia</span>
+      <div class="foot-social">
+        <a href="#" aria-label="LinkedIn">in</a>
+        <a href="#" aria-label="Instagram">ig</a>
+        <a href="#" aria-label="Correo">@</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

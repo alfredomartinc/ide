@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Equipo — IDE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0e2a28; --teal:#1c5a54; --clay:#b8562a; --sand:#f5f0e4; --sage:#7c9473;
+    --paper:#fbf8f1; --text:#22302c; --line: rgba(14,42,40,0.14); --maxw: 1180px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{ font-family:'Inter', sans-serif; color:var(--text); background:var(--paper); line-height:1.55; -webkit-font-smoothing:antialiased; }
+  @media (prefers-reduced-motion: reduce){ *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;} }
+  h1,h2,h3,h4{ font-family:'Fraunces', serif; font-weight:600; color:var(--ink); line-height:1.08; letter-spacing:-0.01em; }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+  .eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--clay); font-weight:500; }
+
+  .horizon{ width:100%; height:34px; display:block; }
+  .horizon path{ stroke:var(--sand); stroke-width:1.4; fill:none; opacity:0.55; }
+  .horizon path.b{ stroke:var(--clay); opacity:0.9; }
+
+  header{ position:sticky; top:0; z-index:50; background:rgba(251,248,241,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  nav.wrap{ display:flex; align-items:center; justify-content:space-between; padding-top:18px; padding-bottom:18px; gap:20px; }
+  .brand{ display:flex; align-items:center; gap:10px; font-family:'Fraunces', serif; font-weight:700; font-size:22px; color:var(--ink); }
+    .brand .logo{ height:50px; width:auto; display:block; flex-shrink:0; 
+  }
+  .brand .mark{ width:34px; height:34px; border-radius:50%; background:conic-gradient(from 200deg, var(--teal), var(--sage) 40%, var(--clay) 75%, var(--teal)); flex-shrink:0; }
+  .navlinks{ display:flex; gap:22px; font-size:14px; font-weight:500; }
+  .navlinks a{ position:relative; padding:4px 0; color:var(--ink); opacity:0.82; white-space:nowrap; }
+  .navlinks a:hover{ opacity:1; }
+  .navlinks a.active{ opacity:1; }
+  .navlinks a::after{ content:''; position:absolute; left:0; bottom:-2px; width:0; height:1.5px; background:var(--clay); transition:width 0.25s ease; }
+  .navlinks a:hover::after, .navlinks a.active::after{ width:100%; }
+  .navcta{ font-size:13.5px; font-weight:600; padding:10px 18px; border-radius:100px; background:var(--ink); color:var(--paper); white-space:nowrap; }
+
+  .page-hero{ padding:56px 0 60px; position:relative; background:var(--hero-bg, var(--paper)); border-bottom:1px solid var(--line); }
+  .page-hero::before{ content:''; position:absolute; left:0; top:0; bottom:0; width:7px; background:var(--accent, var(--clay)); }
+  .page-hero .eyebrow{ color:var(--accent, var(--clay)); }
+  .page-hero .crumb{ font-size:13px; color:#5a655f; margin-top:10px; }
+  .page-hero .crumb a{ color:var(--ink); opacity:0.75; }
+  .page-hero .crumb a:hover{ text-decoration:underline; }
+  .page-hero h1{ font-size:clamp(32px, 4.2vw, 50px); margin-top:16px; color:var(--ink); max-width:16ch; }
+  .page-hero h1 mark{ background:none; color:inherit; position:relative; padding:0 2px; }
+  .page-hero h1 mark::after{ content:''; position:absolute; left:-2px; right:-2px; bottom:2px; height:0.3em; background:var(--accent, var(--clay)); opacity:0.32; z-index:-1; }
+  .page-hero p.lead{ margin-top:22px; font-size:18px; max-width:66ch; color:#3c4b45; }
+
+  section.team{ padding:80px 0; }
+  .team-group{ margin-bottom:56px; }
+  .team-group:last-child{ margin-bottom:0; }
+  .team-group h2{ font-size:26px; margin-bottom:30px; }
+  .team-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); border-radius:16px; overflow:hidden; border:1px solid var(--line); }
+  .member{ background:var(--paper); padding:32px 34px; display:flex; gap:20px; }
+  .avatar{
+    width:56px; height:56px; border-radius:50%; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces', serif; font-weight:600; font-size:19px; color:var(--paper);
+  }
+  .member-body h3{ font-size:19px; }
+  .member-body .role{ font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--teal); letter-spacing:0.08em; text-transform:uppercase; margin-top:4px; display:block; }
+  .member-body p{ font-size:14.5px; color:#3c4b45; margin-top:12px; }
+  .member-links{ margin-top:14px; display:flex; gap:12px; }
+  .member-links a{ font-size:13px; font-weight:600; color:var(--clay); }
+  .member-links a:hover{ text-decoration:underline; }
+
+  section.join{ background:var(--sand); padding:56px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .join .wrap{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px; }
+  .join h3{ font-size:22px; max-width:34ch; }
+  .btn{ display:inline-flex; align-items:center; gap:8px; padding:13px 22px; border-radius:100px; font-weight:600; font-size:14.5px; border:1px solid var(--ink); transition:transform 0.18s ease, background 0.18s ease; }
+  .btn-solid{ background:var(--ink); color:var(--paper); }
+  .btn-solid:hover{ transform:translateY(-2px); background:var(--teal); }
+
+  section.about{ padding:90px 0; }
+  .about-grid{ display:grid; grid-template-columns:0.55fr 1fr; gap:50px; }
+  .about h2{ font-size:30px; max-width:14ch; }
+  .about p.big{ font-family:'Fraunces', serif; font-weight:400; font-size:26px; line-height:1.4; color:var(--ink); }
+  .about p.big em{ font-style:normal; color:var(--clay); }
+
+  footer{ background:rgba(25,25,25,0.9); color:var(--sand); padding:64px 0 30px; }
+  .foot-grid{ display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:40px; padding-bottom:40px; border-bottom:1px solid rgba(245,240,228,0.14); }
+  .foot-brand{ font-family:'Fraunces', serif; font-size:24px; font-weight:700; color:var(--paper); }
+  .foot-grid p{ font-size:14px; color:rgba(245,240,228,0.68); margin-top:14px; max-width:36ch; }
+  footer h4{ color:var(--paper); font-size:13px; letter-spacing:0.08em; text-transform:uppercase; font-family:'IBM Plex Mono',monospace; font-weight:500; margin-bottom:16px;}
+  footer ul{ list-style:none; display:flex; flex-direction:column; gap:10px; }
+  footer ul a{ font-size:14.5px; color:rgba(245,240,228,0.82); }
+  footer ul a:hover{ color:var(--clay); }
+  .foot-bottom{ padding-top:24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-size:13px; color:rgba(245,240,228,0.5); }
+  .foot-social{ display:flex; gap:14px; }
+  .foot-social a{ width:34px; height:34px; border-radius:50%; border:1px solid rgba(245,240,228,0.3); display:flex; align-items:center; justify-content:center; font-size:13px; }
+  .foot-social a:hover{ border-color:var(--clay); color:var(--clay); }
+
+  @media (max-width: 920px){
+    .navlinks{ display:none; }
+    .team-grid{ grid-template-columns:1fr; }
+    .about-grid{ grid-template-columns:1fr; }
+    .foot-grid{ grid-template-columns:1fr; }
+    .join .wrap{ flex-direction:column; align-items:flex-start; }
+  }
+  @media (max-width: 560px){
+    .member{ flex-direction:column; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+	<a href="idelab-rediseno.html" class="brand"><img src="images/logo_ide_transp.png" alt="logo" class="logo"></a>    <div class="navlinks">
+      <a href="idelab-mision.html">Misión y Visión</a>
+      <a href="idelab-equipo.html">Equipo</a>
+      <a href="idelab-quehacemos.html">Qué hacemos</a>
+      <a href="idelab-proyectos.html">Proyectos</a>
+      <a href="idelab-publicaciones.html">Publicaciones</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <a href="#contacto" class="navcta">Trabajemos juntos</a>
+  </nav>
+</header>
+
+<section class="page-hero" style="--accent:#d97a63; --hero-bg:#f7e4dd">
+  <div class="wrap">
+    <span class="eyebrow">Nosotros</span>
+    <p class="crumb"><a href="idelab-rediseno.html">Inicio</a> / Equipo</p>
+    <h1><mark>Equipo</mark></h1>
+    <p class="lead">Nuestro equipo proviene de distintas disciplinas que conversan para entregar un análisis multidisciplinario y completo de diversos problemas, siempre con una característica en común: somos idealistas que quieren ver —y marcar— un cambio en la sociedad.</p>
+  </div>
+</section>
+
+<svg class="horizon" viewBox="0 0 1200 34" preserveAspectRatio="none">
+  <path d="M0 20 Q150 4 300 20 T600 20 T900 20 T1200 20" />
+  <path class="b" d="M0 26 Q150 12 300 26 T600 26 T900 26 T1200 26" />
+</svg>
+
+<section class="team">
+  <div class="wrap">
+
+    <div class="team-group">
+      <h2>Los de Planta</h2>
+      <div class="team-grid">
+
+        <div class="member">
+          <div class="avatar" style="background:linear-gradient(160deg,var(--teal),var(--ink))">BL</div>
+          <div class="member-body">
+            <h3>Boris Lopicich</h3>
+            <span class="role">Justicia ambiental &amp; regulación</span>
+            <p>MSc en Política y Regulación Ambiental por la London School of Economics, abogado de la Universidad Diego Portales. Ha asesorado organizaciones, centros de pensamiento y comisiones legislativas del Congreso Nacional de Chile en energía, recursos naturales y medio ambiente.</p>
+            <div class="member-links">
+              <a href="https://x.com/borislopicich">X / Twitter</a>
+              <a href="https://www.linkedin.com/in/borislopicich/?locale=en_US">LinkedIn</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="member">
+          <div class="avatar" style="background:linear-gradient(160deg,var(--clay),#7a3a19)">AM</div>
+          <div class="member-body">
+            <h3>Alfredo Martin</h3>
+            <span class="role">Economía &amp; políticas públicas</span>
+            <p>Abogado, Máster en Políticas Públicas y Ph.D. en Economía. Utiliza métodos cuasiexperimentales para determinar el efecto causal de políticas públicas en derechos económicos, sociales y culturales. Fue analista del Ministerio de Desarrollo Social y hoy es investigador senior en UCLA.</p>
+            <div class="member-links">
+              <a href="https://alfredomartinc.github.io/">Sitio personal</a>
+              <a href="https://www.linkedin.com/in/alfredo-martin-0663a02b/">LinkedIn</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="member">
+          <div class="avatar" style="background:linear-gradient(160deg,var(--sage),var(--teal))">HS</div>
+          <div class="member-body">
+            <h3>Hineva Schmidt</h3>
+            <span class="role">Derecho &amp; iniciativas ambientales</span>
+            <p>Abogada de la Universidad Diego Portales y Máster en Derecho Penal de la Universidad de Chile. Trabajó en temas de inmigración y trata de personas en el Ministerio del Interior y en organizaciones sin fines de lucro. Hoy se dedica a iniciativas de reducción de plásticos y limpieza costera.</p>
+          </div>
+        </div>
+
+        <div class="member">
+          <div class="avatar" style="background:linear-gradient(160deg,#8c3d52,var(--ink))">AJ</div>
+          <div class="member-body">
+            <h3>Alejandra Jaures</h3>
+            <span class="role">Impacto social &amp; gobernanza</span>
+            <p>Abogada con más de 15 años de experiencia liderando proyectos de impacto social, sostenibilidad y desarrollo económico en América Latina. Fue Directora Regional Metropolitana de FOSIS y hoy es Gerente de Asuntos Corporativos en Banca Ética Latinoamericana.</p>
+            <div class="member-links">
+              <a href="https://www.linkedin.com/in/alejandra-jaur%C3%A9s-rodr%C3%ADguez-044a282a/?originalSubdomain=cl">LinkedIn</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="team-group">
+      <h2>Consultores</h2>
+      <div class="team-grid">
+        <div class="member">
+          <div class="avatar" style="background:linear-gradient(160deg,var(--teal),var(--sage))">JC</div>
+          <div class="member-body">
+            <h3>Jimena Cádiz</h3>
+            <span class="role">Diseño gráfico</span>
+            <p>Diseñadora gráfica independiente y fundadora de Ji Diseño y Color. Trabajó con programas sociales de UNICEF, desarrollando plataformas de contenidos para capacitaciones en Mozambique.</p>
+            <div class="member-links">
+              <a href="https://www.instagram.com/ji.disenocolor/?locale=zh-hans&hl=ar">Instagram</a>
+              <a href="https://www.linkedin.com/in/jimena-c%C3%A1diz-herrera-3b926124/?originalSubdomain=cl">LinkedIn</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="join">
+  <div class="wrap">
+    <h3>¿Quieres sumarte como consultor/a o colaborar en un proyecto?</h3>
+    <a class="btn btn-solid" href="idelab-rediseno.html#contacto">Escríbenos</a>
+  </div>
+</section>
+
+<section class="about">
+  <div class="wrap about-grid">
+    <div>
+      <span class="eyebrow">La ONG</span>
+      <h2>Nuestra convicción</h2>
+    </div>
+    <p class="big">Somos una consultora sin fines de lucro, guiados por la convicción de que la <em>innovación social</em> y la <em>evidencia empírica</em> deben guiar juntas el diseño de políticas públicas, para asegurar el pleno goce de los derechos fundamentales.</p>
+  </div>
+</section>
+
+<footer id="contacto">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <span class="foot-brand">IDE</span>
+        <p>Consultora sin fines de lucro e incubadora de innovación social. Diseño, monitoreo y evaluación de programas con enfoque en evidencia.</p>
+      </div>
+      <div>
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="idelab-mision.html">Misión y Visión</a></li>
+          <li><a href="idelab-equipo.html">Equipo</a></li>
+          <li><a href="idelab-quehacemos.html">Qué hacemos</a></li>
+          <li><a href="idelab-proyectos.html">Proyectos</a></li>
+          <li><a href="idelab-publicaciones.html">Publicaciones</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="mailto:proyectos@idelab.org">proyectos@idelab.org</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 IDE — Innovación, Desarrollo y Evidencia</span>
+      <div class="foot-social">
+        <a href="#" aria-label="LinkedIn">in</a>
+        <a href="#" aria-label="Instagram">ig</a>
+        <a href="#" aria-label="Correo">@</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
